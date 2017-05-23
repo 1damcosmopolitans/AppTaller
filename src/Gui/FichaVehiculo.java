@@ -17,6 +17,8 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FichaVehiculo extends JFrame{
 	private JTextField txtModelo;
@@ -26,6 +28,7 @@ public class FichaVehiculo extends JFrame{
 	private JList listVehiculo;
 	private String matricula;
 	private boolean modo; //TRUE MODO ESCRITURA FALSE MODO LECTURA
+	private JTextField txtDni;
 
 	/**
 	 * Create the application.
@@ -40,7 +43,7 @@ public class FichaVehiculo extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setBounds(100, 100, 450, 390);
+		setBounds(100, 100, 450, 432);
 		getContentPane().setLayout(null);
 		
 		JLabel lblModelo = new JLabel("Modelo:");
@@ -52,7 +55,7 @@ public class FichaVehiculo extends JFrame{
 		getContentPane().add(lblMarca);
 		
 		JLabel lblTipoVehiculo = new JLabel("Tipo vehiculo:");
-		lblTipoVehiculo.setBounds(10, 162, 75, 14);
+		lblTipoVehiculo.setBounds(10, 188, 75, 14);
 		getContentPane().add(lblTipoVehiculo);
 		
 		txtModelo = new JTextField();
@@ -62,17 +65,17 @@ public class FichaVehiculo extends JFrame{
 		
 		txtMarca = new JTextField();
 		txtMarca.setColumns(10);
-		txtMarca.setBounds(10, 131, 193, 20);
+		txtMarca.setBounds(10, 119, 193, 20);
 		getContentPane().add(txtMarca);
 		
 		listVehiculo = new JList();
-		listVehiculo.setBounds(10, 180, 193, 83);
+		listVehiculo.setBounds(10, 213, 193, 83);
 		getContentPane().add(listVehiculo);
 		
-		JButton btnVerCoche = new JButton("Ver cliente");
-		btnVerCoche.setFont(new Font("SimSun", Font.BOLD, 11));
-		btnVerCoche.setBounds(283, 70, 116, 81);
-		getContentPane().add(btnVerCoche);
+		JButton btnVerCliente = new JButton("Ver cliente");
+		btnVerCliente.setFont(new Font("SimSun", Font.BOLD, 11));
+		btnVerCliente.setBounds(283, 70, 116, 81);
+		getContentPane().add(btnVerCliente);
 		
 		JButton btnReparacion = new JButton("Reparacion");
 		btnReparacion.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -80,12 +83,12 @@ public class FichaVehiculo extends JFrame{
 		getContentPane().add(btnReparacion);
 		
 		JLabel lblColor = new JLabel("Color:");
-		lblColor.setBounds(10, 267, 75, 14);
+		lblColor.setBounds(10, 295, 75, 14);
 		getContentPane().add(lblColor);
 		
 		txtColor = new JTextField();
 		txtColor.setColumns(10);
-		txtColor.setBounds(10, 286, 193, 20);
+		txtColor.setBounds(10, 320, 193, 20);
 		getContentPane().add(txtColor);
 		
 		JLabel lblMatricula = new JLabel("Matricula:");
@@ -99,11 +102,15 @@ public class FichaVehiculo extends JFrame{
 		getContentPane().add(txtMatricula);
 		
 		JButton btnCrear = new JButton("Añadir");
+		btnCrear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnCrear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try{
-					ControlVehiculos.Aniadir(txtMarca.getText(), txtModelo.getText(), null, (String)listVehiculo.getSelectedValue(), txtColor.getText(), txtMatricula.getText());
+					ControlVehiculos.Aniadir(txtMarca.getText(), txtModelo.getText(), txtDni.getText(), (String)listVehiculo.getSelectedValue(), txtColor.getText(), txtMatricula.getText());
 					
 					JOptionPane.showMessageDialog(null, "Se añadio con exito el vehiculo", "AÑADIR VEHICULO", JOptionPane.INFORMATION_MESSAGE);
 				}catch(Exception e){
@@ -112,13 +119,25 @@ public class FichaVehiculo extends JFrame{
 			}
 		});
 		btnCrear.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnCrear.setBounds(10, 317, 89, 23);
+		btnCrear.setBounds(10, 351, 89, 23);
 		getContentPane().add(btnCrear);
+		
+		JLabel lblDni = new JLabel("Dni propietario:");
+		lblDni.setBounds(10, 147, 109, 14);
+		getContentPane().add(lblDni);
+		
+		txtDni = new JTextField();
+		txtDni.setColumns(10);
+		txtDni.setBounds(10, 160, 193, 20);
+		getContentPane().add(txtDni);
 		
 		//ESTABLECER EL MODO LECTURA O ESCRITURA
 		for(Component i: getContentPane().getComponents()){
 			i.setEnabled(modo);
 		}
+		
+		btnVerCliente.setEnabled(true);
+		btnVerCliente.setEnabled(true);
 	
 		//SI EL MODO ES LECTURA CARGAMOS EL FORMULARIO CON LA INFORMACIÓN CORRESPONDIENTE
 		if(!modo){
@@ -129,6 +148,7 @@ public class FichaVehiculo extends JFrame{
 				txtModelo.setText(aux.getModelo());
 				txtMarca.setText(aux.getMarca());
 				txtColor.setText(aux.getColor());
+				txtDni.setText(aux.getDnipropietario());
 			}
 		}
 	}
