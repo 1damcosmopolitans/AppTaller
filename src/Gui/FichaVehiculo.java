@@ -19,6 +19,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.AbstractListModel;
 
 public class FichaVehiculo extends JFrame{
 	private JTextField txtModelo;
@@ -69,6 +70,15 @@ public class FichaVehiculo extends JFrame{
 		getContentPane().add(txtMarca);
 		
 		listVehiculo = new JList();
+		listVehiculo.setModel(new AbstractListModel() {
+			String[] values = new String[] {"Coche", "Moto", "Camion"};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
 		listVehiculo.setBounds(10, 213, 193, 83);
 		getContentPane().add(listVehiculo);
 		
@@ -149,6 +159,7 @@ public class FichaVehiculo extends JFrame{
 				txtMarca.setText(aux.getMarca());
 				txtColor.setText(aux.getColor());
 				txtDni.setText(aux.getDnipropietario());
+				listVehiculo.setSelectedValue(aux.getTipo(), true);
 			}
 		}
 	}
