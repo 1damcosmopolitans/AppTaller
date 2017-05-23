@@ -115,7 +115,7 @@ public class LoginApp {
 
 					lberror1.setText("");
 				} else {
-					lberror1.setText("Error Login Incorrecto!");
+					lberror1.setText("Error Usuario Incorrecto!");
 				}
 
 				if (passwordField.equals(PASS)) {
@@ -123,7 +123,7 @@ public class LoginApp {
 
 					lberror2.setText("");
 				} else {
-					lberror2.setText("Error Password Incorrecta");
+					lberror2.setText("Error Password Incorrecta!");
 				}
 
 				if (UsuarioC && PasswordC) {
