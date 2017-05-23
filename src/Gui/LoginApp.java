@@ -32,7 +32,9 @@ public class LoginApp {
 	private JTextArea textAreaUsuario;
 	private boolean PasswordC;
 	private boolean UsuarioC;
-	
+	private JTextArea textAreaUsuario_1;
+	private JLabel lberror1;
+	private JLabel lberror2;
 	
 	
 
@@ -82,7 +84,7 @@ public class LoginApp {
 		lblPassword.setBounds(125, 561, 428, 152);
 		frame.getContentPane().add(lblPassword);
 		
-		JTextArea textAreaUsuario_1 = new JTextArea();
+		 textAreaUsuario_1 = new JTextArea();
 		textAreaUsuario_1.setFont(new Font("Berlin Sans FB", Font.PLAIN, 99));
 		textAreaUsuario_1.setBounds(636, 226, 749, 152);
 		frame.getContentPane().add(textAreaUsuario_1);
@@ -92,13 +94,13 @@ public class LoginApp {
 		passwordField.setBounds(636, 561, 749, 152);
 		frame.getContentPane().add(passwordField);
 		
-		JLabel lberror1 = new JLabel("");
+		lberror1 = new JLabel("");
 		lberror1.setForeground(new Color(204, 0, 0));
 		lberror1.setFont(new Font("Tahoma", Font.PLAIN, 55));
 		lberror1.setBounds(646, 409, 739, 115);
 		frame.getContentPane().add(lberror1);
 		
-		JLabel lberror2 = new JLabel("");
+		lberror2 = new JLabel("");
 		lberror2.setForeground(new Color(204, 0, 0));
 		lberror2.setFont(new Font("Tahoma", Font.PLAIN, 55));
 		lberror2.setBounds(636, 764, 739, 115);
