@@ -40,6 +40,30 @@ public class Vehiculo {
 		return color;
 	}
 
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+
+	public void setDnipropietario(String dnipropietario) {
+		this.dnipropietario = dnipropietario;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
 	public String getMatricula() {
 		return matricula;
 	}
