@@ -20,6 +20,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractListModel;
+import javax.swing.JToggleButton;
 
 public class FichaVehiculo extends JFrame{
 	private JTextField txtModelo;
@@ -27,6 +28,11 @@ public class FichaVehiculo extends JFrame{
 	private JTextField txtColor;
 	private JTextField txtMatricula;
 	private JList listVehiculo;
+	private JToggleButton btnEditar;
+	private JButton btnVerCliente;
+	private JButton btnReparacion;
+	private JButton btnGuardar;
+	private JButton btnCrear;
 	private String matricula;
 	private boolean modo; //TRUE MODO ESCRITURA FALSE MODO LECTURA
 	private JTextField txtDni;
@@ -38,6 +44,7 @@ public class FichaVehiculo extends JFrame{
 		this.matricula = matricula;
 		this.modo = modo;
 		initialize();
+		setEventos();
 	}
 
 	/**
@@ -83,12 +90,12 @@ public class FichaVehiculo extends JFrame{
 		listVehiculo.setBounds(10, 213, 193, 83);
 		getContentPane().add(listVehiculo);
 		
-		JButton btnVerCliente = new JButton("Ver cliente");
+		btnVerCliente = new JButton("Ver cliente");
 		btnVerCliente.setFont(new Font("SimSun", Font.BOLD, 11));
 		btnVerCliente.setBounds(283, 70, 116, 81);
 		getContentPane().add(btnVerCliente);
 		
-		JButton btnReparacion = new JButton("Reparacion");
+		btnReparacion = new JButton("Reparacion");
 		btnReparacion.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnReparacion.setBounds(283, 200, 116, 81);
 		getContentPane().add(btnReparacion);
@@ -112,23 +119,12 @@ public class FichaVehiculo extends JFrame{
 		txtMatricula.setText(matricula);
 		getContentPane().add(txtMatricula);
 		
-		JButton btnCrear = new JButton("Añadir");
+		btnCrear = new JButton("Añadir");
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnCrear.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				try{
-					ControlVehiculos.Aniadir(txtMarca.getText(), txtModelo.getText(), txtDni.getText(), (String)listVehiculo.getSelectedValue(), txtColor.getText(), txtMatricula.getText());
-					
-					JOptionPane.showMessageDialog(null, "Se añadio con exito el vehiculo", "AÑADIR VEHICULO", JOptionPane.INFORMATION_MESSAGE);
-				}catch(Exception e){
-					JOptionPane.showMessageDialog(null, e.getMessage(),"ERROR AL AÑADIR VEHICULO", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
+
 		btnCrear.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnCrear.setBounds(10, 351, 89, 23);
 		getContentPane().add(btnCrear);
@@ -142,6 +138,12 @@ public class FichaVehiculo extends JFrame{
 		txtDni.setBounds(10, 160, 193, 20);
 		getContentPane().add(txtDni);
 		
+		btnGuardar = new JButton("Guardar");
+
+		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnGuardar.setBounds(10, 351, 89, 23);
+		getContentPane().add(btnGuardar);
+		
 		//ESTABLECER EL MODO LECTURA O ESCRITURA
 		for(Component i: getContentPane().getComponents()){
 			i.setEnabled(modo);
@@ -149,6 +151,13 @@ public class FichaVehiculo extends JFrame{
 		
 		btnVerCliente.setEnabled(true);
 		btnReparacion.setEnabled(true);
+	
+		
+		btnEditar = new JToggleButton("Editar");
+
+		btnEditar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnEditar.setBounds(283, 336, 116, 38);
+		getContentPane().add(btnEditar);
 	
 		//SI EL MODO ES LECTURA CARGAMOS EL FORMULARIO CON LA INFORMACIÓN CORRESPONDIENTE
 		if(!modo){
@@ -163,5 +172,53 @@ public class FichaVehiculo extends JFrame{
 				listVehiculo.setSelectedValue(aux.getTipo(), true);
 			}
 		}
+		
+		//BOTONES VISIBILIDAD
+		btnEditar.setVisible(!modo);
+		btnGuardar.setVisible(!modo);
+		btnCrear.setVisible(modo);
+	}
+	
+	public void setEventos(){
+		//EVENTO EDITAR VEHICULOS
+		btnGuardar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try{
+					ControlVehiculos.Editar(txtMarca.getText(), txtModelo.getText(), txtDni.getText(), (String)listVehiculo.getSelectedValue(), txtColor.getText(), matricula, txtMatricula.getText());
+					JOptionPane.showMessageDialog(null, "Vehiculo modificado con éxito","MODIFICACIÓN VEHICULO", JOptionPane.INFORMATION_MESSAGE);
+				}catch(Exception ep){
+					JOptionPane.showMessageDialog(null, ep.getMessage(),"ERROR AL MODIFICAR EL VEHICULO", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		
+		//EVENTO CREAR VEHICULOS
+		btnCrear.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try{
+					ControlVehiculos.Aniadir(txtMarca.getText(), txtModelo.getText(), txtDni.getText(), (String)listVehiculo.getSelectedValue(), txtColor.getText(), txtMatricula.getText());
+					
+					JOptionPane.showMessageDialog(null, "Se añadio con exito el vehiculo", "AÑADIR VEHICULO", JOptionPane.INFORMATION_MESSAGE);
+				}catch(Exception e){
+					JOptionPane.showMessageDialog(null, e.getMessage(),"ERROR AL AÑADIR VEHICULO", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		
+		//EVENTO ACTIVAR MODO EDITAR
+		btnEditar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				for(Component i: getContentPane().getComponents()){
+					i.setEnabled(btnEditar.isSelected());
+				}
+				
+				btnEditar.setEnabled(true);
+				btnVerCliente.setEnabled(true);
+				btnReparacion.setEnabled(true);
+			}
+		});
 	}
 }
