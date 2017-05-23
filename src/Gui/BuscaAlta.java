@@ -8,8 +8,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+
+import Controllers.ControlVehiculos;
+
 import javax.swing.JTextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class BuscaAlta {
 
@@ -49,6 +55,15 @@ public class BuscaAlta {
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(ControlVehiculos.Buscar(textFieldMatricula.getText()))
+				new FichaVehiculo(textFieldMatricula.getText(), false).setVisible(true);
+				else
+				JOptionPane.showMessageDialog(null, "No se encontro un vehiculo con esa matrícula","ERROR", JOptionPane.ERROR_MESSAGE);
+			}
+		});
 		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 20));
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -58,6 +73,12 @@ public class BuscaAlta {
 		frame.getContentPane().add(btnBuscar);
 		
 		JButton btnNuevaAlta = new JButton("Nueva Alta");
+		btnNuevaAlta.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new FichaVehiculo(textFieldMatricula.getText(), true).setVisible(true);
+			}
+		});
 		btnNuevaAlta.setFont(new Font("Tahoma", Font.BOLD, 20));
 		btnNuevaAlta.setBounds(323, 29, 220, 66);
 		frame.getContentPane().add(btnNuevaAlta);

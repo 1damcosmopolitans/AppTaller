@@ -69,7 +69,7 @@ public class LoginApp {
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 99));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		frame.setExtendedState(Frame.MAXIMIZED_BOTH); /*Nos permite poner el frame maximizado ocupando toda la pantalla*/
+		//frame.setExtendedState(Frame.MAXIMIZED_BOTH); /*Nos permite poner el frame maximizado ocupando toda la pantalla*/
 		frame.getContentPane().setBackground(Color.PINK);
 		frame.getContentPane().setLayout(null);
 		

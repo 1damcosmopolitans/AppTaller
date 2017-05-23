@@ -1,42 +1,38 @@
 package Gui;
 
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import Controllers.ControlVehiculos;
+import Models.Vehiculo;
+
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FichaVehiculo extends JFrame{
 	private JTextField txtModelo;
 	private JTextField txtMarca;
 	private JTextField txtColor;
 	private JTextField txtMatricula;
-
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FichaVehiculo window = new FichaVehiculo();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JList listVehiculo;
+	private String matricula;
+	private boolean modo; //TRUE MODO ESCRITURA FALSE MODO LECTURA
 
 	/**
 	 * Create the application.
 	 */
-	public FichaVehiculo() {
+	public FichaVehiculo(String matricula, boolean modo) {
+		this.matricula = matricula;
+		this.modo = modo;
 		initialize();
 	}
 
@@ -45,7 +41,6 @@ public class FichaVehiculo extends JFrame{
 	 */
 	private void initialize() {
 		setBounds(100, 100, 450, 390);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
 		JLabel lblModelo = new JLabel("Modelo:");
@@ -70,7 +65,7 @@ public class FichaVehiculo extends JFrame{
 		txtMarca.setBounds(10, 131, 193, 20);
 		getContentPane().add(txtMarca);
 		
-		JList listVehiculo = new JList();
+		listVehiculo = new JList();
 		listVehiculo.setBounds(10, 180, 193, 83);
 		getContentPane().add(listVehiculo);
 		
@@ -100,11 +95,41 @@ public class FichaVehiculo extends JFrame{
 		txtMatricula = new JTextField();
 		txtMatricula.setColumns(10);
 		txtMatricula.setBounds(10, 28, 193, 20);
+		txtMatricula.setText(matricula);
 		getContentPane().add(txtMatricula);
 		
-		JButton btnEditar = new JButton("Editar");
-		btnEditar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnEditar.setBounds(10, 317, 89, 23);
-		getContentPane().add(btnEditar);
+		JButton btnCrear = new JButton("Añadir");
+		btnCrear.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try{
+					ControlVehiculos.Aniadir(txtMarca.getText(), txtModelo.getText(), null, (String)listVehiculo.getSelectedValue(), txtColor.getText(), txtMatricula.getText());
+					
+					JOptionPane.showMessageDialog(null, "Se añadio con exito el vehiculo", "AÑADIR VEHICULO", JOptionPane.INFORMATION_MESSAGE);
+				}catch(Exception e){
+					JOptionPane.showMessageDialog(null, e.getMessage(),"ERROR AL AÑADIR VEHICULO", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		btnCrear.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCrear.setBounds(10, 317, 89, 23);
+		getContentPane().add(btnCrear);
+		
+		//ESTABLECER EL MODO LECTURA O ESCRITURA
+		for(Component i: getContentPane().getComponents()){
+			i.setEnabled(modo);
+		}
+	
+		//SI EL MODO ES LECTURA CARGAMOS EL FORMULARIO CON LA INFORMACIÓN CORRESPONDIENTE
+		if(!modo){
+			if(ControlVehiculos.Buscar(matricula)){
+				Vehiculo aux = ControlVehiculos.Obtener(matricula);
+				
+				txtMatricula.setText(aux.getMatricula());
+				txtModelo.setText(aux.getModelo());
+				txtMarca.setText(aux.getMarca());
+				txtColor.setText(aux.getColor());
+			}
+		}
 	}
 }
