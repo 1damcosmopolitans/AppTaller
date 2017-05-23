@@ -79,6 +79,7 @@ public class FichaVehiculo extends JFrame{
 				return values[index];
 			}
 		});
+		listVehiculo.setSelectedIndex(0);
 		listVehiculo.setBounds(10, 213, 193, 83);
 		getContentPane().add(listVehiculo);
 		
@@ -147,7 +148,7 @@ public class FichaVehiculo extends JFrame{
 		}
 		
 		btnVerCliente.setEnabled(true);
-		btnVerCliente.setEnabled(true);
+		btnReparacion.setEnabled(true);
 	
 		//SI EL MODO ES LECTURA CARGAMOS EL FORMULARIO CON LA INFORMACIÓN CORRESPONDIENTE
 		if(!modo){
