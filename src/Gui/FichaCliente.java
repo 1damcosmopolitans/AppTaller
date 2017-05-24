@@ -89,7 +89,7 @@ public class FichaCliente extends JFrame {
 		/*PONEMOS EL DNI SACADO DE LA FICHA DELVEHICULO Y DESABILITAMOS EL PANEL SEGUNDARIO
 		panelDni.setEnabled(false);*/
 		setBounds(100, 100, 716, 598);
-		setExtendedState(MAXIMIZED_BOTH);
+		//setExtendedState(MAXIMIZED_BOTH);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
