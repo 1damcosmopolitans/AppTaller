@@ -16,7 +16,7 @@ import javax.swing.JTextArea;
 public class LoginApp {
 
 	// ATRIBUTOS
-	protected static final int PASS = 1234;
+	protected static final String PASS = "1234";
 	protected static final String USER = "admin";
 	private JFrame frame;
 	private JPasswordField passwordField;
@@ -111,7 +111,7 @@ public class LoginApp {
 					lberror1.setText("Error Usuario Incorrecto!");
 				}
 
-				if (passwordField.equals(PASS)) {
+				if (passwordField.getText().equals(PASS)) {
 					PasswordC = true;
 
 					lberror2.setText("");
@@ -120,7 +120,8 @@ public class LoginApp {
 				}
 
 				if (UsuarioC && PasswordC) {
-
+					
+                    frame.setVisible(false);
 					BuscaAlta p = new BuscaAlta();
 					p.frame.setVisible(true);
 
