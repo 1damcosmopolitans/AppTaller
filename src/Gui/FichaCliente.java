@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;		//Para validar email
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 
@@ -21,12 +22,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JToggleButton;
+import javax.swing.JTextArea;
 
 public class FichaCliente extends JFrame {
 	
@@ -44,7 +48,6 @@ public class FichaCliente extends JFrame {
 	private JLabel lblTelefono;
 	private JLabel lblEmail;
 	private JLabel lblComentarios;
-	private JTextField txtFldComentarios;
 	private JTextField txtFldDni;
 	private JTextField txtFldNombre;
 	private JTextField txtFldApellido1;
@@ -52,11 +55,13 @@ public class FichaCliente extends JFrame {
 	private JTextField txtFldDireccion;
 	private JTextField txtFldTelefono;
 	private JTextField txtFldEmail;
+	private JTextArea txtAreaComentarios;
 	private JButton btnEditar;
-	private JButton button;
-	private JButton button_1;
+	private JButton btnVolver;
+	private JButton btnSalir;
 	private JPanel panelDni;
 	private JLabel lblDni;
+	private JToggleButton btnModoEditar;
     private static final String PATTERN_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	
@@ -64,9 +69,13 @@ public class FichaCliente extends JFrame {
 	 * Constructor
 	 */
 	
-	public FichaCliente(String dni, boolean modo) {
+	public FichaCliente(String dni) {
 		this.dniCliente = dni;
-		this.modo = modo;
+		
+		if(ControlClientes.Buscar(dni))
+			this.modo = false;
+		else
+			this.modo = true;
 		initialize();
 		
 	}
@@ -77,11 +86,8 @@ public class FichaCliente extends JFrame {
 	private void initialize() {
 		
 		
-		txtFldDni.setText(dniCliente);
-		
 		/*PONEMOS EL DNI SACADO DE LA FICHA DELVEHICULO Y DESABILITAMOS EL PANEL SEGUNDARIO
 		panelDni.setEnabled(false);*/
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 716, 598);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -132,11 +138,6 @@ public class FichaCliente extends JFrame {
 		lblComentarios.setBounds(494, 261, 114, 33);
 		panelPrincipal.add(lblComentarios);
 		
-		txtFldComentarios = new JTextField();
-		txtFldComentarios.setBounds(432, 311, 248, 153);
-		panelPrincipal.add(txtFldComentarios);
-		txtFldComentarios.setColumns(10);
-		
 		panelDni = new JPanel();
 		panelDni.setBounds(10, 65, 314, 56);
 		panelPrincipal.add(panelDni);
@@ -151,6 +152,7 @@ public class FichaCliente extends JFrame {
 		txtFldDni.setBounds(121, 11, 184, 33);
 		panelDni.add(txtFldDni);
 		txtFldDni.setColumns(10);
+		txtFldDni.setText(dniCliente);
 		
 		txtFldNombre = new JTextField();
 		/**
@@ -263,17 +265,14 @@ public class FichaCliente extends JFrame {
 			public void keyTyped(KeyEvent e7) {
 				int limit6 = 25;
 				if(txtFldEmail.getText().length() == limit6) e7.consume();
-				
-				if(!validarEmail(txtFldEmail.getText())){					
-						JOptionPane.showMessageDialog(null,"Debes ingresar una mail correcto.");				
-				}							
+											
 			}
 		});
 		txtFldEmail.setColumns(10);
 		txtFldEmail.setBounds(135, 431, 273, 33);
 		panelPrincipal.add(txtFldEmail);
 		
-		btnEditar = new JButton("EDITAR");
+		btnEditar = new JButton("GUARDAR");
 		
 		/**
 		 * AL RELLENAR EL FORMULARIO VALIDADO GUARDAMOS LOS DATOS***3 CMPOS OBLIGATORIOS
@@ -282,13 +281,22 @@ public class FichaCliente extends JFrame {
 			btnEditar.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
+					if(!validarEmail(txtFldEmail.getText())){					
+						JOptionPane.showMessageDialog(null,"Debes ingresar una mail correcto.");				
+					}else{
 					try{
 						if(!txtFldDni.equals("")&& txtFldDni.getText() != null && !txtFldNombre.equals("")&& txtFldNombre.getText() !=null &&!txtFldApellido1.equals("") && txtFldApellido1 != null && !txtFldDireccion.equals("")&& txtFldDireccion != null)
-						ControlClientes.Aniadir(txtFldDni.getText(), txtFldNombre.getText(), txtFldApellido1.getText(), txtFldApellido2.getText(),txtFldDireccion.getText(), txtFldTelefono.getText(), txtFldEmail.getText(), txtFldComentarios.getText());
 						
-						JOptionPane.showMessageDialog(null, "Se añadio con exito el cliente", "AÑADIR CLIENTE", JOptionPane.INFORMATION_MESSAGE);
+						if(modo){
+							ControlClientes.Aniadir(txtFldDni.getText(), txtFldNombre.getText(), txtFldApellido1.getText(), txtFldApellido2.getText(),txtFldDireccion.getText(), txtFldEmail.getText(), txtFldTelefono.getText(), txtAreaComentarios.getText());
+							JOptionPane.showMessageDialog(null, "Se añadio con exito el cliente", "AÑADIR CLIENTE", JOptionPane.INFORMATION_MESSAGE);
+						}else{
+							ControlClientes.Editar(dniCliente, txtFldDni.getText(),txtFldNombre.getText(), txtFldApellido1.getText(), txtFldApellido2.getText(), txtFldDireccion.getText(), txtFldEmail.getText(), txtFldTelefono.getText(), txtAreaComentarios.getText());
+							JOptionPane.showMessageDialog(null, "Se modificó con exito el cliente", "AÑADIR CLIENTE", JOptionPane.INFORMATION_MESSAGE);
+						}
 					}catch(Exception e){
 						JOptionPane.showMessageDialog(null, e.getMessage(),"ERROR AL AÑADIR CLIENTE", JOptionPane.ERROR_MESSAGE);
+					}
 					}
 				}
 			});
@@ -297,27 +305,80 @@ public class FichaCliente extends JFrame {
 		btnEditar.setBounds(256, 488, 185, 50);
 		panelPrincipal.add(btnEditar);
 		
-		button = new JButton("VOLVER");
-		button.addActionListener(new ActionListener() {
+		btnVolver = new JButton("VOLVER");
+		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				ficha1.setVisible(true);
 				FichaCliente.this.dispose();
 			}
 		});
-		button.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button.setBounds(25, 488, 185, 50);
-		panelPrincipal.add(button);
+		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnVolver.setBounds(25, 488, 185, 50);
+		panelPrincipal.add(btnVolver);
 		
-		button_1 = new JButton("SALIR");
-		button_1.addActionListener(new ActionListener() {
+		btnSalir = new JButton("SALIR");
+		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		button_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_1.setBounds(483, 488, 185, 50);
-		panelPrincipal.add(button_1);
+		btnSalir.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnSalir.setBounds(483, 488, 185, 50);
+		panelPrincipal.add(btnSalir);
+		
+		btnModoEditar = new JToggleButton("EDITAR");
+		btnModoEditar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				for(Component i: panelPrincipal.getComponents()){
+					i.setEnabled(btnModoEditar.isSelected());
+				}
+				
+				for(Component i: panelDni.getComponents()){
+					i.setEnabled(btnModoEditar.isSelected());
+				}
+				
+				btnModoEditar.setEnabled(true);
+				btnSalir.setEnabled(true);
+				btnVolver.setEnabled(true);
+			}
+		});
+		btnModoEditar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnModoEditar.setBounds(475, 128, 155, 63);
+		panelPrincipal.add(btnModoEditar);
+		
+		//ESTABLECER EL MODO LECTURA O ESCRITURA
+		
+		for(Component i: panelDni.getComponents()){
+			i.setEnabled(modo);
+		}
+		
+		for(Component i: panelPrincipal.getComponents()){
+			i.setEnabled(modo);
+		}
+		
+		btnSalir.setEnabled(true);
+		btnVolver.setEnabled(true);
+		
+		btnModoEditar.setEnabled(true);
+		btnModoEditar.setVisible(!modo);
+		
+		txtAreaComentarios = new JTextArea();
+		txtAreaComentarios.setBounds(446, 310, 222, 154);
+		panelPrincipal.add(txtAreaComentarios);
+		
+		if(!modo){
+			Cliente aux = ControlClientes.Obtener(dniCliente);
+			txtFldApellido1.setText(aux.getApellido1Cli());
+			txtFldApellido2.setText(aux.getApellido2Cli());
+			txtAreaComentarios.setText(aux.getComentarios());
+			txtFldDireccion.setText(aux.getDireccion());
+			txtFldDni.setText(aux.getDniCliente());
+			txtFldEmail.setText(aux.getEmail());
+			txtFldNombre.setText(aux.getNombreCli());
+			txtFldTelefono.setText(aux.getTelefonoCli());
+		}
 	}
 	
 	  private static boolean validarEmail(String email) {
@@ -330,7 +391,4 @@ public class FichaCliente extends JFrame {
 	        return matcher.matches();
 	 
 	    }
-	
-	
-		
 }

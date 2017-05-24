@@ -45,7 +45,19 @@ public class ControlVehiculos {
 			String tipo, String color, String matricula, String matriculanueva){
 		
 		if(!Buscar(matricula)) throw new RuntimeException("No se encontro el vehiculo a editar");
-		Aniadir(marca, modelo, dnipropietario, tipo, color, matriculanueva);
-		listaVehiculos.remove(Obtener(matricula));
+
+		if(matricula.equals(matriculanueva)){
+			Obtener(matricula).setMarca(marca);
+			Obtener(matricula).setColor(color);
+			Obtener(matricula).setDnipropietario(dnipropietario);
+			Obtener(matricula).setTipo(tipo);
+			Obtener(matricula).setModelo(modelo);
+		}else{
+			if(Buscar(matriculanueva)) throw new RuntimeException("No se puede cambiar la matricula porque la matricula nueva esta ya ocupada");
+			
+			listaVehiculos.add(new Vehiculo(marca, modelo, dnipropietario, tipo, color, matriculanueva));
+			listaVehiculos.remove(Obtener(matricula));
+		}
+		
 	}
 }

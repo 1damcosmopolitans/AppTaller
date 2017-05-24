@@ -91,6 +91,12 @@ public class FichaVehiculo extends JFrame{
 		getContentPane().add(listVehiculo);
 		
 		btnVerCliente = new JButton("Ver cliente");
+		btnVerCliente.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				new FichaCliente(txtDni.getText()).setVisible(true);
+			}
+		});
 		btnVerCliente.setFont(new Font("SimSun", Font.BOLD, 11));
 		btnVerCliente.setBounds(283, 70, 116, 81);
 		getContentPane().add(btnVerCliente);
@@ -151,7 +157,8 @@ public class FichaVehiculo extends JFrame{
 		
 		btnVerCliente.setEnabled(true);
 		btnReparacion.setEnabled(true);
-	
+		btnVerCliente.setVisible(!modo);
+		btnReparacion.setVisible(!modo);
 		
 		btnEditar = new JToggleButton("Editar");
 
@@ -171,6 +178,7 @@ public class FichaVehiculo extends JFrame{
 				txtDni.setText(aux.getDnipropietario());
 				listVehiculo.setSelectedValue(aux.getTipo(), true);
 			}
+			
 		}
 		
 		//BOTONES VISIBILIDAD
