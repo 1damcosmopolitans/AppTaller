@@ -64,27 +64,27 @@ public class LoginApp {
 				frame.getContentPane().setLayout(null);
 		
 				JLabel lblUsuario = new JLabel("Usuario:");
-				lblUsuario.setBounds(41, 111, 224, 152);
+				lblUsuario.setBounds(150, 116, 224, 152);
 				lblUsuario.setFont(new Font("Sylfaen", Font.PLAIN, 50));
 				frame.getContentPane().add(lblUsuario);
 
 		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setBounds(41, 293, 224, 158);
+		lblPassword.setBounds(150, 293, 224, 158);
 		lblPassword.setFont(new Font("Sylfaen", Font.PLAIN, 50));
 		frame.getContentPane().add(lblPassword);
 
 		textUsuario = new JTextArea();
-		textUsuario.setBounds(271, 139, 428, 109);
+		textUsuario.setBounds(462, 139, 428, 109);
 		textUsuario.setFont(new Font("Berlin Sans FB", Font.PLAIN, 45));
 		frame.getContentPane().add(textUsuario);
 
 		passwordField = new JPasswordField();
-		passwordField.setBounds(271, 310, 428, 109);
+		passwordField.setBounds(462, 310, 428, 109);
 		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		frame.getContentPane().add(passwordField);
 
 		lberror1 = new JLabel("");
-		lberror1.setBounds(281, 255, 396, 50);
+		lberror1.setBounds(478, 255, 396, 50);
 		lberror1.setForeground(new Color(204, 0, 0));
 		lberror1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		frame.getContentPane().add(lberror1);
@@ -96,7 +96,7 @@ public class LoginApp {
 		frame.getContentPane().add(lberror2);
 
 		JButton BotonListo_1 = new JButton("ENTRAR");
-		BotonListo_1.setBounds(738, 156, 201, 242);
+		BotonListo_1.setBounds(1009, 161, 201, 242);
 		BotonListo_1.setBackground(new Color(0, 255, 102));
 		BotonListo_1.setForeground(Color.BLACK);
 		BotonListo_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
