@@ -159,13 +159,6 @@ public class FichaVehiculo extends JFrame{
 		btnEditar.setBounds(283, 336, 116, 38);
 		getContentPane().add(btnEditar);
 	
-		
-		btnEditar = new JToggleButton("Editar");
-
-		btnEditar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnEditar.setBounds(283, 336, 116, 38);
-		getContentPane().add(btnEditar);
-	
 		//SI EL MODO ES LECTURA CARGAMOS EL FORMULARIO CON LA INFORMACIÓN CORRESPONDIENTE
 		if(!modo){
 			if(ControlVehiculos.Buscar(matricula)){
