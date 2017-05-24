@@ -114,8 +114,8 @@ public class LoginApp extends JFrame {
 		getContentPane().add(btnSalir);
 		
 		btnSalir = new JButton("SALIR");
-		btnSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnSalir.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
 				dispose();
 			}
 
