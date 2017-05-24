@@ -108,18 +108,18 @@ public class LoginApp extends JFrame {
 		getContentPane().add(BotonListo_1);
 		
 		btnSalir = new JButton("SALIR");
+		btnSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+		});
 		btnSalir.setForeground(Color.WHITE);
 		btnSalir.setBackground(Color.RED);
 		btnSalir.setBounds(1009, 635, 200, 50);
 		getContentPane().add(btnSalir);
 		
-		btnSalir = new JButton("SALIR");
-		btnSalir.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				dispose();
-			}
-
-		});
+		
 
 		BotonListo_1.addMouseListener(new MouseAdapter() {
 			@Override
