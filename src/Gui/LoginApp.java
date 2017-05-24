@@ -103,7 +103,7 @@ public class LoginApp {
 		BotonListo_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (textUsuario.getText().equals(USER)) {
+				if (textUsuario.getText().trim().equals(USER)) {
 					UsuarioC = true;
 
 					lberror1.setText("");
