@@ -12,12 +12,12 @@ public class Vehiculo {
 	public Vehiculo(String marca, String modelo, String dnipropietario,
 			String tipo, String color, String matricula) {
 		super();
-		this.marca = marca;
-		this.modelo = modelo;
-		this.dnipropietario = dnipropietario;
-		this.tipo = tipo;
-		this.color = color;
-		this.matricula = matricula;
+		setMarca(marca);
+		setModelo(modelo);
+		setDnipropietario(dnipropietario);
+		setTipo(tipo);
+		setColor(color);
+		setMatricula(matricula);
 	}
 
 	public String getMarca() {
@@ -61,6 +61,8 @@ public class Vehiculo {
 	}
 
 	public void setMatricula(String matricula) {
+		if(matricula.equals("") || matricula == null) throw new RuntimeException("La matricula no puede estar vacía");
+		
 		this.matricula = matricula;
 	}
 

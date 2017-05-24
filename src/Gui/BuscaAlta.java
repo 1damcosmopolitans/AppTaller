@@ -19,7 +19,7 @@ import java.awt.event.MouseEvent;
 
 public class BuscaAlta {
 
-	private JFrame frame;
+	protected JFrame frame;
 	private JTextField textFieldMatricula;
 
 	/**
