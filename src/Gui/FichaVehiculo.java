@@ -53,6 +53,7 @@ public class FichaVehiculo extends JFrame{
 	private void initialize() {
 		setBounds(100, 100, 450, 432);
 		getContentPane().setLayout(null);
+		setExtendedState(MAXIMIZED_BOTH);
 		
 		JLabel lblModelo = new JLabel("Modelo:");
 		lblModelo.setBounds(10, 54, 46, 14);
