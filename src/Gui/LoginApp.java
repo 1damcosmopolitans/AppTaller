@@ -90,7 +90,7 @@ public class LoginApp {
 		frame.getContentPane().add(lberror1);
 
 		lberror2 = new JLabel("");
-		lberror2.setBounds(275, 430, 428, 34);
+		lberror2.setBounds(462, 430, 428, 34);
 		lberror2.setForeground(new Color(204, 0, 0));
 		lberror2.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		frame.getContentPane().add(lberror2);
