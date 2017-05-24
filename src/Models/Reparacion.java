@@ -9,6 +9,18 @@ package Models;
 		private int idFactura;
 		private String averia;
 		
+		
+		
+		public Reparacion(int idRep, String matriculaRep, Calendar fechaIni, Calendar fechaFin, int idFactura,
+				String averia) {
+			super();
+			this.idRep = idRep;
+			this.matriculaRep = matriculaRep;
+			this.fechaIni = fechaIni;
+			this.fechaFin = fechaFin;
+			this.idFactura = idFactura;
+			this.averia = averia;
+		}
 		@Override
 		public String toString() {
 			return "Reparacion [idRep=" + idRep + ", matriculaRep=" + matriculaRep + ", fechaIni=" + fechaIni
