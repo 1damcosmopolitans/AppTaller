@@ -57,7 +57,7 @@ public class LoginApp {
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 99));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		frame.setMinimumSize(new Dimension(1000, 500));
+		frame.setMinimumSize(new Dimension(1000, 600));
 		frame.getContentPane().setBackground(new Color(152, 251, 152));
 		frame.getContentPane().setLayout(null);
 		
@@ -84,13 +84,13 @@ public class LoginApp {
 		lberror1 = new JLabel("");
 		lberror1.setForeground(new Color(204, 0, 0));
 		lberror1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lberror1.setBounds(646, 409, 739, 115);
+		lberror1.setBounds(281, 255, 396, 50);
 		frame.getContentPane().add(lberror1);
 
 		lberror2 = new JLabel("");
 		lberror2.setForeground(new Color(204, 0, 0));
 		lberror2.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		lberror2.setBounds(636, 764, 739, 115);
+		lberror2.setBounds(275, 430, 428, 34);
 		frame.getContentPane().add(lberror2);
 
 		JButton BotonListo_1 = new JButton("ENTRAR");
