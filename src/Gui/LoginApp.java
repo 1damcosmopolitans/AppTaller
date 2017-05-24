@@ -58,7 +58,7 @@ public class LoginApp {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		frame.setMinimumSize(new Dimension(1000, 500));
-		frame.getContentPane().setBackground(Color.GREEN);
+		frame.getContentPane().setBackground(new Color(152, 251, 152));
 		frame.getContentPane().setLayout(null);
 		
 				JLabel lblUsuario = new JLabel("Usuario:");
