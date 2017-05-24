@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class BuscaAlta {
+public class BuscaAlta extends JFrame{
 
 	protected JFrame frame;
 	private JTextField textFieldMatricula;
@@ -30,7 +30,7 @@ public class BuscaAlta {
 			public void run() {
 				try {
 					BuscaAlta window = new BuscaAlta();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -46,13 +46,13 @@ public class BuscaAlta {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of the 
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 590, 357);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setBounds(100, 100, 590, 357);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 		
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.addMouseListener(new MouseAdapter() {
@@ -70,7 +70,7 @@ public class BuscaAlta {
 			}
 		});
 		btnBuscar.setBounds(37, 29, 220, 66);
-		frame.getContentPane().add(btnBuscar);
+		getContentPane().add(btnBuscar);
 		
 		JButton btnNuevaAlta = new JButton("Nueva Alta");
 		btnNuevaAlta.addMouseListener(new MouseAdapter() {
@@ -81,21 +81,21 @@ public class BuscaAlta {
 		});
 		btnNuevaAlta.setFont(new Font("Tahoma", Font.BOLD, 20));
 		btnNuevaAlta.setBounds(323, 29, 220, 66);
-		frame.getContentPane().add(btnNuevaAlta);
+		getContentPane().add(btnNuevaAlta);
 		
 		JLabel lblInsertarMatrcula = new JLabel("INSERTAR MATR\u00CDCULA");
 		lblInsertarMatrcula.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInsertarMatrcula.setBounds(192, 101, 200, 50);
-		frame.getContentPane().add(lblInsertarMatrcula);
+		getContentPane().add(lblInsertarMatrcula);
 		
 		textFieldMatricula = new JTextField();
 		textFieldMatricula.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		textFieldMatricula.setBounds(68, 143, 461, 95);
-		frame.getContentPane().add(textFieldMatricula);
+		getContentPane().add(textFieldMatricula);
 		textFieldMatricula.setColumns(10);
 		
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.setBounds(403, 285, 89, 23);
-		frame.getContentPane().add(btnLogout);
+		getContentPane().add(btnLogout);
 	}
 }

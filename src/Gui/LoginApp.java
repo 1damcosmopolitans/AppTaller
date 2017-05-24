@@ -3,17 +3,21 @@ package Gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JTextArea;
 
-public class LoginApp {
+public class LoginApp extends JFrame {
 
 	// ATRIBUTOS
 	protected static final String PASS = "1234";
@@ -24,6 +28,7 @@ public class LoginApp {
 	private boolean UsuarioC;
 	private JTextArea textUsuario;
 	private JLabel lberror1, lberror2;
+	private JButton btnSalir;
 
 	/**
 	 * Inicio de la aplicación
@@ -33,7 +38,7 @@ public class LoginApp {
 			public void run() {
 				try {
 					LoginApp window = new LoginApp();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -49,58 +54,72 @@ public class LoginApp {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of the 
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setForeground(new Color(51, 153, 51));
-		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 99));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setForeground(new Color(51, 153, 51));
+		getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 99));
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		frame.setExtendedState(frame.MAXIMIZED_BOTH);
+		setExtendedState(MAXIMIZED_BOTH);
 		
-		frame.setMinimumSize(new Dimension(1000, 600));
-		frame.getContentPane().setBackground(new Color(152, 251, 152));
-				frame.getContentPane().setLayout(null);
+		setMinimumSize(new Dimension(1000, 600));
+		getContentPane().setBackground(new Color(152, 251, 152));
+				getContentPane().setLayout(null);
 		
 				JLabel lblUsuario = new JLabel("Usuario:");
 				lblUsuario.setBounds(150, 116, 224, 152);
 				lblUsuario.setFont(new Font("Sylfaen", Font.PLAIN, 50));
-				frame.getContentPane().add(lblUsuario);
+				getContentPane().add(lblUsuario);
 
 		JLabel lblPassword = new JLabel("Password:");
 		lblPassword.setBounds(150, 293, 224, 158);
 		lblPassword.setFont(new Font("Sylfaen", Font.PLAIN, 50));
-		frame.getContentPane().add(lblPassword);
+		getContentPane().add(lblPassword);
 
 		textUsuario = new JTextArea();
 		textUsuario.setBounds(462, 139, 428, 109);
 		textUsuario.setFont(new Font("Berlin Sans FB", Font.PLAIN, 45));
-		frame.getContentPane().add(textUsuario);
+		getContentPane().add(textUsuario);
 
 		passwordField = new JPasswordField();
 		passwordField.setBounds(462, 310, 428, 109);
 		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 50));
-		frame.getContentPane().add(passwordField);
+		getContentPane().add(passwordField);
 
 		lberror1 = new JLabel("");
 		lberror1.setBounds(478, 255, 396, 50);
 		lberror1.setForeground(new Color(204, 0, 0));
 		lberror1.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		frame.getContentPane().add(lberror1);
+		getContentPane().add(lberror1);
 
 		lberror2 = new JLabel("");
 		lberror2.setBounds(462, 430, 428, 34);
 		lberror2.setForeground(new Color(204, 0, 0));
 		lberror2.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		frame.getContentPane().add(lberror2);
+		getContentPane().add(lberror2);
 
 		JButton BotonListo_1 = new JButton("ENTRAR");
 		BotonListo_1.setBounds(1009, 161, 201, 242);
 		BotonListo_1.setBackground(new Color(0, 255, 102));
 		BotonListo_1.setForeground(Color.BLACK);
 		BotonListo_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		frame.getContentPane().add(BotonListo_1);
+		getContentPane().add(BotonListo_1);
+		
+		btnSalir = new JButton("SALIR");
+		btnSalir.setForeground(Color.WHITE);
+		btnSalir.setBackground(Color.RED);
+		btnSalir.setBounds(1009, 635, 200, 50);
+		getContentPane().add(btnSalir);
+		
+		btnSalir = new JButton("SALIR");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+
+		});
 
 		BotonListo_1.addMouseListener(new MouseAdapter() {
 			@Override
@@ -123,9 +142,9 @@ public class LoginApp {
 
 				if (UsuarioC && PasswordC) {
 					
-                    frame.setVisible(false);
+                    setVisible(false);
 					BuscaAlta p = new BuscaAlta();
-					p.frame.setVisible(true);
+					p.setVisible(true);
 
 				}
 			}
