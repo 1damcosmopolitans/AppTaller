@@ -57,47 +57,47 @@ public class LoginApp {
 		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 99));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		frame.setMinimumSize(new Dimension(1900, 1200));
-		frame.getContentPane().setBackground(Color.PINK);
+		frame.setMinimumSize(new Dimension(1000, 500));
+		frame.getContentPane().setBackground(Color.GREEN);
 		frame.getContentPane().setLayout(null);
-
-		JLabel lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setBounds(125, 211, 428, 152);
-		lblUsuario.setFont(new Font("Sylfaen", Font.PLAIN, 99));
-		frame.getContentPane().add(lblUsuario);
+		
+				JLabel lblUsuario = new JLabel("Usuario:");
+				lblUsuario.setBounds(41, 111, 224, 152);
+				lblUsuario.setFont(new Font("Sylfaen", Font.PLAIN, 50));
+				frame.getContentPane().add(lblUsuario);
 
 		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setFont(new Font("Sylfaen", Font.PLAIN, 99));
-		lblPassword.setBounds(125, 561, 428, 152);
+		lblPassword.setFont(new Font("Sylfaen", Font.PLAIN, 50));
+		lblPassword.setBounds(41, 293, 224, 158);
 		frame.getContentPane().add(lblPassword);
 
 		textUsuario = new JTextArea();
-		textUsuario.setFont(new Font("Berlin Sans FB", Font.PLAIN, 99));
-		textUsuario.setBounds(636, 226, 749, 152);
+		textUsuario.setFont(new Font("Berlin Sans FB", Font.PLAIN, 45));
+		textUsuario.setBounds(271, 139, 428, 109);
 		frame.getContentPane().add(textUsuario);
 
 		passwordField = new JPasswordField();
-		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 99));
-		passwordField.setBounds(636, 561, 749, 152);
+		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		passwordField.setBounds(271, 310, 428, 109);
 		frame.getContentPane().add(passwordField);
 
 		lberror1 = new JLabel("");
 		lberror1.setForeground(new Color(204, 0, 0));
-		lberror1.setFont(new Font("Tahoma", Font.PLAIN, 55));
+		lberror1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lberror1.setBounds(646, 409, 739, 115);
 		frame.getContentPane().add(lberror1);
 
 		lberror2 = new JLabel("");
 		lberror2.setForeground(new Color(204, 0, 0));
-		lberror2.setFont(new Font("Tahoma", Font.PLAIN, 55));
+		lberror2.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lberror2.setBounds(636, 764, 739, 115);
 		frame.getContentPane().add(lberror2);
 
 		JButton BotonListo_1 = new JButton("ENTRAR");
 		BotonListo_1.setBackground(new Color(0, 255, 102));
 		BotonListo_1.setForeground(Color.BLACK);
-		BotonListo_1.setFont(new Font("Tahoma", Font.PLAIN, 42));
-		BotonListo_1.setBounds(1523, 226, 287, 487);
+		BotonListo_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		BotonListo_1.setBounds(738, 156, 201, 242);
 		frame.getContentPane().add(BotonListo_1);
 
 		BotonListo_1.addMouseListener(new MouseAdapter() {
