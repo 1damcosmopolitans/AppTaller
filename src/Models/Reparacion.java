@@ -2,17 +2,19 @@ package Models;
 	import java.util.Calendar;
 	public class Reparacion {
 		
-		private int idRep;
+		private String idRep;
 		private String matriculaRep;
 		private Calendar fechaIni;
 		private Calendar fechaFin;
 		private int idFactura;
 		private String averia;
+		private byte estadoAveria;				//0 :inicial, 1:intermedio, 2:Avanzado, 3:reparado
 		
 		
 		
-		public Reparacion(int idRep, String matriculaRep, Calendar fechaIni, Calendar fechaFin, int idFactura,
-				String averia) {
+		
+		public Reparacion(String idRep, String matriculaRep, Calendar fechaIni, Calendar fechaFin, int idFactura,
+				String averia, byte estadoAveria) {
 			super();
 			this.idRep = idRep;
 			this.matriculaRep = matriculaRep;
@@ -20,16 +22,20 @@ package Models;
 			this.fechaFin = fechaFin;
 			this.idFactura = idFactura;
 			this.averia = averia;
+			this.estadoAveria = estadoAveria;
 		}
+		
 		@Override
 		public String toString() {
 			return "Reparacion [idRep=" + idRep + ", matriculaRep=" + matriculaRep + ", fechaIni=" + fechaIni
-					+ ", fechaFin=" + fechaFin + ", idFactura=" + idFactura + ", averia=" + averia + "]";
+					+ ", fechaFin=" + fechaFin + ", idFactura=" + idFactura + ", averia=" + averia + ", estadoAveria="
+					+ estadoAveria + "]";
 		}
-		public int getIdRep() {
+
+		public String getIdRep() {
 			return idRep;
 		}
-		public void setIdRep(int idRep) {
+		public void setIdRep(String idRep) {
 			this.idRep = idRep;
 		}
 		public String getMatriculaRep() {

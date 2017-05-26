@@ -89,6 +89,7 @@ public class FichaCliente extends JFrame {
 		/*PONEMOS EL DNI SACADO DE LA FICHA DELVEHICULO Y DESABILITAMOS EL PANEL SEGUNDARIO
 		panelDni.setEnabled(false);*/
 		setBounds(100, 100, 716, 598);
+		//setExtendedState(MAXIMIZED_BOTH);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -310,7 +311,7 @@ public class FichaCliente extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				ficha1.setVisible(true);
-				FichaCliente.this.dispose();
+				FichaCliente.this.setVisible(false);
 			}
 		});
 		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 14));
