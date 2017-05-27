@@ -311,7 +311,7 @@ public class FichaCliente extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				ficha1.setVisible(true);
-				FichaCliente.this.dispose();
+				FichaCliente.this.setVisible(false);
 			}
 		});
 		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 14));

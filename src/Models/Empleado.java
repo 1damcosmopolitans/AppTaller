@@ -2,7 +2,7 @@ package Models;
 
 public class Empleado {
 	
-	private int usuario;
+	private String usuario;
 	private String nombre  ;
 	private String apellido1;
 	private String apellido2;
@@ -13,10 +13,10 @@ public class Empleado {
 	 * Asignacion de los campos de la UI
 	 */
 	
-	public Empleado(int idEmp, String nombre, String apellido1, String apellido2, String  departamento){
+	public Empleado(String usuarioEmp, String nombre, String apellido1, String apellido2, String  departamento){
 			 
 		super();
-		this.usuario = idEmp;
+		this.usuario = usuarioEmp;
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
@@ -24,18 +24,18 @@ public class Empleado {
 		
 	}
 
-	public int getIdEmp() {
+	public String getUsuarioEmp() {
 		return usuario;
 	}
 
 	@Override
 	public String toString() {
-		return "Empleado [idEmp=" + usuario + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2="
+		return "Empleado [usuarioEmp=" + usuario + ", nombre=" + nombre + ", apellido1=" + apellido1 + ", apellido2="
 				+ apellido2 + ", departamento=" + departamento + "]";
 	}
 
-	public void setIdEmp(int idEmp) {
-		this.usuario = idEmp;
+	public void setUsuarioEmp(String usuarioEmp) {
+		this.usuario = usuarioEmp;
 	}
 
 	public String getNombre() {
