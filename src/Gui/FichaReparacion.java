@@ -21,6 +21,8 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -60,21 +62,9 @@ public class FichaReparacion extends JFrame {
 	private String matricula;
 	private String tipo;
 	
-	
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FichaReparacion window = new FichaReparacion();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
+
 	/**
-	 * Que se vea la luz !
+	 * CONSTRUCTOR
 	 */
 
 	public FichaReparacion(String matricula, String dniPropietario,String tipo) {			//UNA REPARACION SE IDENTIFICA POR LA MATRICULA Y EL DNI DEL PROPIETARIO DEL VEHICULO
@@ -87,12 +77,8 @@ public class FichaReparacion extends JFrame {
 	
 	private void initialize() {
 		
-		/*txtFldDni.setEnabled(false);									//Deshabilitamos la matricula y el dni--> da error
-		txtFldMatricula.setEnabled(false);*/
-		
-		
 		getContentPane().setLayout(null);
-		setBounds(200, 100, 573, 475);
+		setBounds(200, 100, 632, 616);
 		
 		
 		lblDniPropietario = new JLabel("DNI PROPIETARIO");
@@ -102,7 +88,7 @@ public class FichaReparacion extends JFrame {
 		
 		txtFldDni = new JTextField();
 		
-		txtFldDni.setText(dniPropietario);											//Sacamos el dni desde la ficha de vehiculo
+		txtFldDni.setText(dniPropietario);				//Sacamos el dni desde la ficha de vehiculo
 		txtFldDni.setEnabled(false);
 	
 		txtFldDni.setBounds(208, 71, 216, 25);
@@ -121,7 +107,7 @@ public class FichaReparacion extends JFrame {
 		
 		txtFldMatricula = new JTextField();
 		
-		txtFldMatricula.setText(matricula); 				//Sacamos la matricula desde la ficha de vehiculo
+		txtFldMatricula.setText(matricula); 			//Sacamos la matricula desde la ficha de vehiculo
 		txtFldMatricula.setEnabled(false);
 		
 		txtFldMatricula.setBounds(208, 107, 216, 25);
@@ -255,21 +241,36 @@ public class FichaReparacion extends JFrame {
 		btnGuardar.addMouseListener(new MouseAdapter() {
 			@Override //(String idRep, String matriculaRep, Calendar fechaIni, Calendar fechaFin, int idFactura, String averia, String estado)
 			public void mouseClicked(MouseEvent arg0) {
-				if(txtFldIdReparacion.getText() == null || txtFldIdReparacion.getText() == "" || txtFechaIngreso.getText()== null || txtFechaIngreso.getText()== ""){					
-					JOptionPane.showMessageDialog(null,"Debes ingresar un Id de reparacion y una fecha de ingreso para poder guardar los detalles de la reparacion!");				
+				if(txtFldIdReparacion.getText() == null || txtFldIdReparacion.getText().equals("") || txtFechaIngreso.getText()== null || !isValidDate(txtFechaIngreso.getText())){					
+					JOptionPane.showMessageDialog(null,"Debes ingresar un Id de reparacion y una fecha de ingreso válida para poder guardar los detalles de la reparacion!");				
 				}else{
-				try{
-					//if(!txtFldDni.equals("")&& txtFldDni.getText() != null && !txtFldMatricula.equals("")&& txtFldMatricula.getText() !=null &&!txtFldIdReparacion.equals("") && txtFldIdReparacion != null && !txtTipoVehiculo.equals("")&& txtTipoVehiculo != null && txtFechaEntrega != null){
+				
+					//El primer IF ES cuando se selecciona y es validada una fecha de salida, que da a entender que es hay que consultar la lista de las reparacionespagadas
 					
+					if(isValidDate(txtFechaEntrega.getText()) && isValidDate(txtFechaIngreso.getText()) &&  !txtFldIdReparacion.getText().equals("") ){
+						try{
+							ControlReparaciones.Aniadir2(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(), txtFechaEntrega.getText(),txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue());
+							JOptionPane.showMessageDialog(null, "Se añadio con exito la descripcion de la reparación PAGADA para este vehículo", "GUARDAR REPARACION", JOptionPane.INFORMATION_MESSAGE);
+						//Editar
+							//ControlReparaciones.Editar2(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(),txtFechaEntrega.getText(), txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue());
+							//JOptionPane.showMessageDialog(null, "Se modificó con exito la ficha de la reparación para este vehículo", "REPARACION EDITADA", JOptionPane.INFORMATION_MESSAGE);
+						//}
+						}catch(Exception e){
+						JOptionPane.showMessageDialog(null, e.getMessage(),"ERROR AL AÑADIR LA REPARACIÓN", JOptionPane.ERROR_MESSAGE);
+						}
+						
+					}else{  //PRIMERA LISTA
+					try{
 						ControlReparaciones.Aniadir(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(), txtFechaEntrega.getText(),txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue());
 						JOptionPane.showMessageDialog(null, "Se añadio con exito la descripcion de la reparación para este vehículo", "GUARDAR REPARACION", JOptionPane.INFORMATION_MESSAGE);
-					//}else{
+						//Editar
 						//ControlReparaciones.Editar(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(),txtFechaEntrega.getText(), txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue());
 						//JOptionPane.showMessageDialog(null, "Se modificó con exito la ficha de la reparación para este vehículo", "REPARACION EDITADA", JOptionPane.INFORMATION_MESSAGE);
 					//}
-				}catch(Exception e){
+					}catch(Exception e){
 					JOptionPane.showMessageDialog(null, e.getMessage(),"ERROR AL AÑADIR LA REPARACIÓN", JOptionPane.ERROR_MESSAGE);
-				}
+					}
+					}
 				}
 			}
 		});
@@ -286,6 +287,26 @@ public class FichaReparacion extends JFrame {
 		getContentPane().add(btnSalir);
 			
 	}
+	/**
+	 * Validaciones de fechas
+	 */
+	
+	public boolean isValidDate(String inDate) {
+
+		if (inDate == null)
+		return false;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		dateFormat.setLenient(false);
+		try {
+		dateFormat.parse(inDate.trim());
+		}
+		catch (ParseException pe) {
+		return false;
+		}
+		return true;
+		}
+	
+	
 	/**
 	 * Los eventos al pulsar los botones
 	 */
