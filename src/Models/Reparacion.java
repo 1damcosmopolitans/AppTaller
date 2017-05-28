@@ -4,31 +4,31 @@ package Models;
 		
 		private String idRep;
 		private String matriculaRep;
-		private Calendar fechaIni;
-		private Calendar fechaFin;
-		private int idFactura;
+		private String fechaIni;
+		private String fechaFin;
 		private String averia;
-		private byte estadoAveria;				//0 :inicial, 1:intermedio, 2:Avanzado, 3:reparado
+		private String estadoAveria;				//0 :inicial, 1:intermedio, 2:Avanzado, 3:reparado
+		private String estadoPago;
 		
 		
 		
 		
-		public Reparacion(String idRep, String matriculaRep, Calendar fechaIni, Calendar fechaFin, int idFactura,
-				String averia, byte estadoAveria) {
+		public Reparacion(String idRep, String matriculaRep, String fechaIni, String fechaFin, 
+				String averia, String estadoAveria) {
 			super();
 			this.idRep = idRep;
 			this.matriculaRep = matriculaRep;
 			this.fechaIni = fechaIni;
 			this.fechaFin = fechaFin;
-			this.idFactura = idFactura;
-			this.averia = averia;
-			this.estadoAveria = estadoAveria;
+		
+			this.averia = averia;					//Comentarios
+			this.estadoAveria = estadoAveria;		//Pendiente o pagado
 		}
 		
 		@Override
 		public String toString() {
 			return "Reparacion [idRep=" + idRep + ", matriculaRep=" + matriculaRep + ", fechaIni=" + fechaIni
-					+ ", fechaFin=" + fechaFin + ", idFactura=" + idFactura + ", averia=" + averia + ", estadoAveria="
+					+ ", fechaFin=" + fechaFin + ", averia=" + averia + ", estadoAveria="
 					+ estadoAveria + "]";
 		}
 
@@ -44,30 +44,43 @@ package Models;
 		public void setMatriculaRep(String matriculaRep) {
 			this.matriculaRep = matriculaRep;
 		}
-		public Calendar getFechaIni() {
+		public String getFechaIni() {
 			return fechaIni;
 		}
-		public void setFechaIni(Calendar fechaIni) {
+		public void setFechaIni(String fechaIni) {
 			this.fechaIni = fechaIni;
 		}
-		public Calendar getFechaFin() {
+		public String getFechaFin() {
 			return fechaFin;
 		}
-		public void setFechaFin(Calendar fechaFin) {
+		public void setFechaFin(String fechaFin) {
 			this.fechaFin = fechaFin;
 		}
-		public int getIdFactura() {
-			return idFactura;
-		}
-		public void setIdFactura(int idFactura) {
-			this.idFactura = idFactura;
-		}
+	
 		public String getAveria() {
 			return averia;
 		}
 		public void setAveria(String averia) {
 			this.averia = averia;
 		}
+		
+		public String getEstadoAveria(){
+			return estadoAveria;
+		}
+		
+		public void setEstadoAveria(String estadoAveria){
+			this.estadoAveria = estadoAveria;
+		}
+		
+		public String getEstadoPago(){
+			return estadoPago;
+		}
+		
+		public void setEstadoPago(String estadoPago){
+			this.estadoPago = estadoPago;
+		}
+		
+		
 		
 		
 

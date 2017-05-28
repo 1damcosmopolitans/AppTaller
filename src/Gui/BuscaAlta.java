@@ -16,6 +16,9 @@ import Controllers.ControlVehiculos;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Frame;
+import java.awt.Dimension;
+import java.awt.Color;
 
 public class BuscaAlta extends JFrame{
 
@@ -42,6 +45,9 @@ public class BuscaAlta extends JFrame{
 	 * Create the application.
 	 */
 	public BuscaAlta() {
+		getContentPane().setBackground(new Color(102, 153, 204));
+		setMinimumSize(new Dimension(1000, 600));
+		setExtendedState(Frame.MAXIMIZED_BOTH);
 		initialize();
 	}
 
@@ -70,7 +76,7 @@ public class BuscaAlta extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnBuscar.setBounds(37, 29, 220, 66);
+		btnBuscar.setBounds(313, 168, 395, 218);
 		getContentPane().add(btnBuscar);
 		
 		JButton btnNuevaAlta = new JButton("Nueva Alta");
@@ -81,22 +87,26 @@ public class BuscaAlta extends JFrame{
 			}
 		});
 		btnNuevaAlta.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btnNuevaAlta.setBounds(323, 29, 220, 66);
+		btnNuevaAlta.setBounds(1191, 168, 395, 218);
 		getContentPane().add(btnNuevaAlta);
 		
 		JLabel lblInsertarMatrcula = new JLabel("INSERTAR MATR\u00CDCULA");
+		lblInsertarMatrcula.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblInsertarMatrcula.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInsertarMatrcula.setBounds(192, 101, 200, 50);
+		lblInsertarMatrcula.setBounds(797, 424, 312, 130);
 		getContentPane().add(lblInsertarMatrcula);
 		
 		textFieldMatricula = new JTextField();
-		textFieldMatricula.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		textFieldMatricula.setBounds(68, 143, 461, 95);
+		textFieldMatricula.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		textFieldMatricula.setBounds(501, 596, 922, 95);
 		getContentPane().add(textFieldMatricula);
 		textFieldMatricula.setColumns(10);
 		
 		JButton btnLogout = new JButton("Logout");
-		btnLogout.setBounds(403, 285, 89, 23);
+		btnLogout.setBackground(new Color(255, 102, 102));
+		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnLogout.setForeground(new Color(255, 255, 255));
+		btnLogout.setBounds(812, 771, 320, 95);
 		getContentPane().add(btnLogout);
 	}
 }

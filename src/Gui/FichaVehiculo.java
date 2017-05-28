@@ -36,8 +36,7 @@ public class FichaVehiculo extends JFrame{
 	private String matricula;
 	private boolean modo; //TRUE MODO ESCRITURA FALSE MODO LECTURA
 	private JTextField txtDni;
-	private JLabel lblIdReparacion;
-	private JTextField txtReparacion;
+	private String tipoV;
 
 	/**
 	 * Create the application.
@@ -53,7 +52,7 @@ public class FichaVehiculo extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setBounds(100, 100, 450, 432);
+		setBounds(100, 100, 573, 475);
 		getContentPane().setLayout(null);
 		//setExtendedState(MAXIMIZED_BOTH);
 		
@@ -90,6 +89,9 @@ public class FichaVehiculo extends JFrame{
 			}
 		});
 		listVehiculo.setSelectedIndex(0);
+		/**
+		 * Le dmos logica a esto para almacenar el valor en un string
+		 */
 		listVehiculo.setBounds(10, 213, 193, 58);
 		getContentPane().add(listVehiculo);
 		
@@ -108,20 +110,20 @@ public class FichaVehiculo extends JFrame{
 		btnReparacion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				new FichaReparacion(txtReparacion.getText(), true).setVisible(true);		//Modo escritura
+				new FichaReparacion(txtMatricula.getText(), txtDni.getText(),(String)listVehiculo.getSelectedValue()).setVisible(true);		//Modo escritura cogiendo los datos de ficha vehiculos
 			}
 		});
 		btnReparacion.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnReparacion.setBounds(283, 200, 116, 81);
+		btnReparacion.setBounds(283, 181, 116, 81);
 		getContentPane().add(btnReparacion);
 		
 		JLabel lblColor = new JLabel("Color:");
-		lblColor.setBounds(10, 282, 75, 14);
+		lblColor.setBounds(10, 305, 75, 14);
 		getContentPane().add(lblColor);
 		
 		txtColor = new JTextField();
 		txtColor.setColumns(10);
-		txtColor.setBounds(80, 279, 193, 20);
+		txtColor.setBounds(67, 302, 193, 20);
 		getContentPane().add(txtColor);
 		
 		JLabel lblMatricula = new JLabel("Matricula:");
@@ -135,10 +137,7 @@ public class FichaVehiculo extends JFrame{
 		getContentPane().add(txtMatricula);
 		
 		btnCrear = new JButton("Añadir");
-		btnCrear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 
 		btnCrear.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnCrear.setBounds(10, 351, 89, 23);
@@ -166,30 +165,19 @@ public class FichaVehiculo extends JFrame{
 		
 		btnVerCliente.setEnabled(true);
 		btnReparacion.setEnabled(true);
-		btnVerCliente.setVisible(!modo);
-		btnReparacion.setVisible(!modo);
+		/*btnVerCliente.setVisible(!modo);
+		btnReparacion.setVisible(!modo);*/
 		
 		btnEditar = new JToggleButton("Editar");
 
 		btnEditar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnEditar.setBounds(283, 336, 116, 38);
 		getContentPane().add(btnEditar);
-		
-		lblIdReparacion = new JLabel("Id Reparacion:");
-		lblIdReparacion.setBounds(10, 318, 75, 14);
-		getContentPane().add(lblIdReparacion);
-		
-		txtReparacion = new JTextField();
-		txtReparacion.setColumns(10);
-		txtReparacion.setBounds(80, 312, 193, 20);
-		getContentPane().add(txtReparacion);
 	
 		//SI EL MODO ES LECTURA CARGAMOS EL FORMULARIO CON LA INFORMACIÓN CORRESPONDIENTE
 		if(!modo){
 			if(ControlVehiculos.Buscar(matricula)){
 				Vehiculo aux = ControlVehiculos.Obtener(matricula);
-				
-				txtReparacion.setText(aux.getIdReparacion());
 				txtMatricula.setText(aux.getMatricula());
 				txtModelo.setText(aux.getModelo());
 				txtMarca.setText(aux.getMarca());
@@ -212,7 +200,7 @@ public class FichaVehiculo extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try{
-					ControlVehiculos.Editar(txtMarca.getText(), txtModelo.getText(), txtDni.getText(), (String)listVehiculo.getSelectedValue(), txtColor.getText(), matricula, txtMatricula.getText(), txtReparacion.getText());
+					ControlVehiculos.Editar(txtMarca.getText(), txtModelo.getText(), txtDni.getText(), (String)listVehiculo.getSelectedValue(), txtColor.getText(), matricula, txtMatricula.getText());
 					JOptionPane.showMessageDialog(null, "Vehiculo modificado con éxito","MODIFICACIÓN VEHICULO", JOptionPane.INFORMATION_MESSAGE);
 				}catch(Exception ep){
 					JOptionPane.showMessageDialog(null, ep.getMessage(),"ERROR AL MODIFICAR EL VEHICULO", JOptionPane.ERROR_MESSAGE);
@@ -225,7 +213,7 @@ public class FichaVehiculo extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try{
-					ControlVehiculos.Aniadir(txtMarca.getText(), txtModelo.getText(), txtDni.getText(), (String)listVehiculo.getSelectedValue(), txtColor.getText(), txtMatricula.getText(), txtReparacion.getText());
+					ControlVehiculos.Aniadir(txtMarca.getText(), txtModelo.getText(), txtDni.getText(), (String)listVehiculo.getSelectedValue(), txtColor.getText(), txtMatricula.getText());
 					
 					JOptionPane.showMessageDialog(null, "Se añadio con exito el vehiculo", "AÑADIR VEHICULO", JOptionPane.INFORMATION_MESSAGE);
 				}catch(Exception e){

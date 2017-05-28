@@ -19,10 +19,10 @@ public class ControlVehiculos {
 	}
 	
 	public static void Aniadir(String marca, String modelo, String dnipropietario,
-			String tipo, String color, String matricula, String idReparacion){
+			String tipo, String color, String matricula){
 		if(Buscar(matricula)) throw new RuntimeException("No se puede añadir el vehiculo porque ya hay uno con la misma matricula");
 		
-		listaVehiculos.add(new Vehiculo(marca, modelo, dnipropietario, tipo, color, matricula, idReparacion));
+		listaVehiculos.add(new Vehiculo(marca, modelo, dnipropietario, tipo, color, matricula));
 	}	
 	public static Vehiculo Obtener(String matricula){
 		Vehiculo vel = null;
@@ -41,10 +41,36 @@ public class ControlVehiculos {
 	//EL VEHICULO ACTUAL Y HABRÍA DOS VEHICULOS CON LA MISMA MATRICULA.
 	
 	public static void Editar(String marca, String modelo, String dnipropietario,
-			String tipo, String color, String matricula, String matriculanueva, String idReparacionNueva){
+			String tipo, String color, String matricula, String matriculanueva){
 		
 		if(!Buscar(matricula)) throw new RuntimeException("No se encontro el vehiculo a editar");
-		Aniadir(marca, modelo, dnipropietario, tipo, color, matriculanueva, idReparacionNueva);
+		Aniadir(marca, modelo, dnipropietario, tipo, color, matriculanueva);
 		listaVehiculos.remove(Obtener(matricula));
 	}
+	
+	/**
+	 * Nos devuelve el tipo de vehiculo como un string
+	 */
+	
+	public static String BuscarTipoVeh(String matricula){
+	
+	Vehiculo veh = Obtener(matricula);
+	
+		Vehiculo vel = null;
+		String tipo = "";
+		
+		for(Vehiculo i: listaVehiculos){
+			if(i.getMatricula().equals(matricula)){
+				vel = i;
+				tipo = vel.getTipo();
+			}
+		}
+		
+		return tipo;
+}
+	
+	
+	
+	
+	
 }

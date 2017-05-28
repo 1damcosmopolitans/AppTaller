@@ -8,10 +8,10 @@ public class Vehiculo {
 	private String tipo;
 	private String color;
 	private String matricula;
-	private String idReparacion;
+	
 	
 	public Vehiculo(String marca, String modelo, String dnipropietario,
-			String tipo, String color, String matricula, String idReparacion) {
+			String tipo, String color, String matricula) {
 		super();
 		setMarca(marca);
 		setModelo(modelo);
@@ -19,7 +19,7 @@ public class Vehiculo {
 		setTipo(tipo);
 		setColor(color);
 		setMatricula(matricula);
-		setIdReparacion(idReparacion);
+		
 	}
 
 	public String getMarca() {
@@ -72,13 +72,6 @@ public class Vehiculo {
 		return matricula;
 	}
 	
-	public String getIdReparacion(){
-		return idReparacion;
-	}
-	
-	public void setIdReparacion(String idReparacion){
-		this.idReparacion = idReparacion;
-	}
 	
 	
 }
