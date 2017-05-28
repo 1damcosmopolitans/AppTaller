@@ -103,6 +103,15 @@ public class BuscaAlta extends JFrame{
 		textFieldMatricula.setColumns(10);
 		
 		JButton btnLogout = new JButton("Logout");
+		btnLogout.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				setVisible(false);
+				LoginApp p = new LoginApp();
+				p.setVisible(true);
+
+			}
+		});
 		btnLogout.setBackground(new Color(255, 102, 102));
 		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnLogout.setForeground(new Color(255, 255, 255));

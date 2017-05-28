@@ -21,6 +21,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractListModel;
 import javax.swing.JToggleButton;
+import java.awt.Dialog.ModalExclusionType;
+import java.awt.Window.Type;
 
 public class FichaVehiculo extends JFrame{
 	private JTextField txtModelo;
