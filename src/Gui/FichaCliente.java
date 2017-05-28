@@ -34,8 +34,7 @@ import javax.swing.JTextArea;
 
 public class FichaCliente extends JFrame {
 	
-	private JFrame frame3;
-	private FichaVehiculo ficha1;
+
 	private String dniCliente;
 	private boolean modo;								//TRUE MODO ESCRITURA FALSE MODO LECTURA
 	private JPanel contentPane;
@@ -250,7 +249,7 @@ public class FichaCliente extends JFrame {
 				int limit5 = 9;
 				char c4 = e6.getKeyChar();
 				if (c4 < '0' || c4 > '9') e6.consume();
-				if(txtFldDireccion.getText().length() == limit5) e6.consume();
+				if(txtFldTelefono.getText().length() == limit5) e6.consume();
 			}
 		});
 		txtFldTelefono.setColumns(10);
@@ -310,7 +309,7 @@ public class FichaCliente extends JFrame {
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				ficha1.setVisible(true);
+				//FichaVehiculo.this.setVisible(true);
 				FichaCliente.this.setVisible(false);
 			}
 		});
@@ -369,7 +368,7 @@ public class FichaCliente extends JFrame {
 		txtAreaComentarios.setBounds(446, 310, 222, 154);
 		panelPrincipal.add(txtAreaComentarios);
 		
-		if(!modo){
+		if(!modo){			//LECTURA
 			Cliente aux = ControlClientes.Obtener(dniCliente);
 			txtFldApellido1.setText(aux.getApellido1Cli());
 			txtFldApellido2.setText(aux.getApellido2Cli());
