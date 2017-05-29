@@ -10,6 +10,61 @@ public class ControlReparaciones {
 
 	private static ArrayList<Reparacion> listaReparaciones = new ArrayList<Reparacion>();//SE INSERTA EN ESTA LISTA SOLO SI SE INTRODUCE LA FECHA DE ENTREGA, ES DECIR QUE SE HA PAGADO LA REPARACIÓN :)
 	
+	private ArrayList<Reparacion> listaTotal(String matricula){
+		ArrayList<Reparacion> aux = new ArrayList<Reparacion>();
+		for(Reparacion i: listaReparaciones){
+			if(i.getMatriculaRep().equals(matricula)){
+				aux.add(i);
+			}
+		}
+		
+		return aux;
+	}
+	
+	public ArrayList<Reparacion> listaReparados(String matricula){
+		ArrayList<Reparacion> aux = new ArrayList<Reparacion>();
+		for(Reparacion i: listaTotal(matricula)){
+			if(i.getEstadoAveria().equals("Reparado")){
+				aux.add(i);
+			}
+		}
+		
+		return aux;
+	}
+	
+	public ArrayList<Reparacion> listaAverias(String matricula){
+		ArrayList<Reparacion> aux = new ArrayList<Reparacion>();
+		for(Reparacion i: listaTotal(matricula)){
+			if(!i.getEstadoAveria().equals("Reparado")){
+				aux.add(i);
+			}
+		}
+		
+		return aux;
+	}
+	
+	public ArrayList<Reparacion> listaPagados(String matricula){
+		ArrayList<Reparacion> aux = new ArrayList<Reparacion>();
+		for(Reparacion i: listaTotal(matricula)){
+			if(i.getEstadoPago().equals("Pagado")){
+				aux.add(i);
+			}
+		}
+		
+		return aux;
+	}
+	
+	public ArrayList<Reparacion> listaPendientesPago(String matricula){
+		ArrayList<Reparacion> aux = new ArrayList<Reparacion>();
+		for(Reparacion i: listaTotal(matricula)){
+			if(i.getEstadoPago().equals("Pendiente")){
+				aux.add(i);
+			}
+		}
+		
+		return aux;
+	}
+	
 	public static boolean Buscar(String idRep){
 		Reparacion rep = Obtener(idRep);
 		
@@ -37,38 +92,6 @@ public class ControlReparaciones {
 		return rep;
 	}
 	
-	public ArrayList<Reparacion> listaReparados(String matricula){
-		ArrayList<Reparacion> aux = new ArrayList<Reparacion>();
-		for(Reparacion i: listaTotal(matricula)){
-			if(i.getEstadoAveria().equals("Reparado")){
-				aux.add(i);
-			}
-		}
-		
-		return aux;
-	}
-	
-	public ArrayList<Reparacion> listaAverias(String matricula){
-		ArrayList<Reparacion> aux = new ArrayList<Reparacion>();
-		for(Reparacion i: listaTotal(matricula)){
-			if(!i.getEstadoAveria().equals("Reparado")){
-				aux.add(i);
-			}
-		}
-		
-		return aux;
-	}
-	
-	public ArrayList<Reparacion> listaTotal(String matricula){
-		ArrayList<Reparacion> aux = new ArrayList<Reparacion>();
-		for(Reparacion i: listaReparaciones){
-			if(i.getMatriculaRep().equals(matricula)){
-				aux.add(i);
-			}
-		}
-		
-		return aux;
-	}
 	
 	//IMPORTANTE RESPETAR EL ORDEN DE LAS INSTRUCCIONES YA QUE SI ELIMINAS DE LA LISTA ANTES DE EJECUTAR LA FUNCION ANIADIR
 	//EN EL CASO DE QUE UN USUARIO INTENTE MODIFICAR UNA ID DE UNA REPARACIÓN POR OTRA NUEVA YA EXISTENTE DENTRO DE LA LISTA
@@ -80,9 +103,5 @@ public class ControlReparaciones {
 		Aniadir(idRep, matriculaRep, fechaIni, fechaFin, averia, estadoAveria);
 		listaReparaciones.remove(Obtener(idRep));
 	}
-	
-	/*
-	 * 2 CASO : SE INGRESA LA FECHA DE SALIDA Y SE ALMACENA LA FICHA DE REPARACION EN LA SEGUNDA LISTA --LAS REPARACIONES PAGADAS
-	 */
 	
 }

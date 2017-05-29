@@ -257,7 +257,7 @@ public class FichaReparacion extends JFrame {
 					
 					if(isValidDate(txtFechaEntrega.getText()) && isValidDate(txtFechaIngreso.getText()) &&  !txtFldIdReparacion.getText().equals("") ){
 						try{
-							ControlReparaciones.Aniadir2(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(), txtFechaEntrega.getText(),txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue());
+							//ControlReparaciones.Aniadir2(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(), txtFechaEntrega.getText(),txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue());
 							JOptionPane.showMessageDialog(null, "Se añadio con exito la descripcion de la reparación PAGADA para este vehículo", "GUARDAR REPARACION", JOptionPane.INFORMATION_MESSAGE);
 						//Editar
 							//ControlReparaciones.Editar2(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(),txtFechaEntrega.getText(), txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue());

@@ -54,7 +54,10 @@ public class FichaVehiculo extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setBounds(100, 100, 573, 475);
+		if(modo)
+			setBounds(100, 100, 263, 435);
+		else
+			setBounds(100, 100, 543, 435);
 		getContentPane().setLayout(null);
 		//setExtendedState(MAXIMIZED_BOTH);
 		
@@ -120,12 +123,12 @@ public class FichaVehiculo extends JFrame{
 		getContentPane().add(btnReparacion);
 		
 		JLabel lblColor = new JLabel("Color:");
-		lblColor.setBounds(10, 305, 75, 14);
+		lblColor.setBounds(10, 282, 75, 14);
 		getContentPane().add(lblColor);
 		
 		txtColor = new JTextField();
 		txtColor.setColumns(10);
-		txtColor.setBounds(67, 302, 193, 20);
+		txtColor.setBounds(10, 296, 193, 20);
 		getContentPane().add(txtColor);
 		
 		JLabel lblMatricula = new JLabel("Matricula:");
@@ -194,6 +197,8 @@ public class FichaVehiculo extends JFrame{
 		btnEditar.setVisible(!modo);
 		btnGuardar.setVisible(!modo);
 		btnCrear.setVisible(modo);
+		btnVerCliente.setVisible(!modo);
+		btnReparacion.setVisible(!modo);
 	}
 	
 	public void setEventos(){
