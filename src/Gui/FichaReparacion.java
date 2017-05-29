@@ -6,18 +6,21 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import Controllers.ControlClientes;
 import Controllers.ControlReparaciones;
 import Controllers.ControlVehiculos;
+import Models.Reparacion;
 import Models.Vehiculo;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -26,13 +29,16 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.AbstractListModel;
 import javax.swing.JToggleButton;
 import javax.swing.JPanel;
+
 import java.util.Calendar;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Color;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -70,7 +76,6 @@ public class FichaReparacion extends JFrame {
 	private JMenuBar menuBar;
 	private JMenu mnLeer;
 	private JMenuItem mntmAadir;
-	
 
 	/**
 	 * CONSTRUCTOR
@@ -270,7 +275,7 @@ public class FichaReparacion extends JFrame {
 						
 					}else{  //PRIMERA LISTA
 					try{
-						ControlReparaciones.Aniadir(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(), txtFechaEntrega.getText(),txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue());
+						ControlReparaciones.Aniadir(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(), txtFechaEntrega.getText(),txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue(), txtAreaDescripcion.getText());
 						JOptionPane.showMessageDialog(null, "Se añadio con exito la descripcion de la reparación para este vehículo", "GUARDAR REPARACION", JOptionPane.INFORMATION_MESSAGE);
 						//Editar
 						//ControlReparaciones.Editar(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(),txtFechaEntrega.getText(), txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue());
@@ -349,7 +354,30 @@ public class FichaReparacion extends JFrame {
 		JButton btnDerecha = new JButton(">");
 		btnDerecha.setBounds(171, 6, 83, 48);
 		panel.add(btnDerecha);
-			
+		
+	if(ControlReparaciones.listaAverias(matricula).isEmpty()){
+		panel.setVisible(false);
+		
+	
+	}else{
+		
+		Reparacion aux = ControlReparaciones.listaAverias(matricula).get(0);
+		Vehiculo aux2 = ControlVehiculos.Obtener(matricula);
+		
+		txtFechaEntrega.setText(aux.getFechaFin());
+		txtFechaIngreso.setText(aux.getFechaIni());
+		txtFldIdReparacion.setText(aux.getIdRep());
+		txtFldMatricula.setText(aux.getMatriculaRep());
+		txtFldDni.setText(aux2.getDnipropietario());
+		txtTipoVehiculo.setText(aux2.getTipo());
+		pagoList.setSelectedValue(aux.getEstadoPago(),true);
+		txtAreaDescripcion.setText(aux.getComentario());
+		
+		
+		
+	}
+	
+	
 	}
 	/**
 	 * Validaciones de fechas

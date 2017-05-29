@@ -20,10 +20,10 @@ public class ControlReparaciones {
 		}
 	}
 
-	public static void Aniadir(String idRep, String matriculaRep, String fechaIni, String fechaFin,  String averia, String estadoAveria){
+	public static void Aniadir(String idRep, String matriculaRep, String fechaIni, String fechaFin,  String averia, String estadoAveria, String Comentario){
 		if(Buscar(idRep)) throw new RuntimeException("No se puede añadir la reparación porque ya hay una con el mismo identificativo");
 		
-		listaReparaciones.add(new Reparacion(idRep, matriculaRep, fechaIni, fechaFin, averia, estadoAveria));
+		listaReparaciones.add(new Reparacion(idRep, matriculaRep, fechaIni, fechaFin, averia, estadoAveria, Comentario));
 	}	
 	public static Reparacion Obtener(String idRep){
 		Reparacion rep = null;
@@ -37,7 +37,7 @@ public class ControlReparaciones {
 		return rep;
 	}
 	
-	public ArrayList<Reparacion> listaReparados(String matricula){
+	public static ArrayList<Reparacion> listaReparados(String matricula){
 		ArrayList<Reparacion> aux = new ArrayList<Reparacion>();
 		for(Reparacion i: listaTotal(matricula)){
 			if(i.getEstadoAveria().equals("Reparado")){
@@ -48,7 +48,7 @@ public class ControlReparaciones {
 		return aux;
 	}
 	
-	public ArrayList<Reparacion> listaAverias(String matricula){
+	public static ArrayList<Reparacion> listaAverias(String matricula){
 		ArrayList<Reparacion> aux = new ArrayList<Reparacion>();
 		for(Reparacion i: listaTotal(matricula)){
 			if(!i.getEstadoAveria().equals("Reparado")){
@@ -59,7 +59,7 @@ public class ControlReparaciones {
 		return aux;
 	}
 	
-	public ArrayList<Reparacion> listaTotal(String matricula){
+	public static ArrayList<Reparacion> listaTotal(String matricula){
 		ArrayList<Reparacion> aux = new ArrayList<Reparacion>();
 		for(Reparacion i: listaReparaciones){
 			if(i.getMatriculaRep().equals(matricula)){
@@ -74,10 +74,10 @@ public class ControlReparaciones {
 	//EN EL CASO DE QUE UN USUARIO INTENTE MODIFICAR UNA ID DE UNA REPARACIÓN POR OTRA NUEVA YA EXISTENTE DENTRO DE LA LISTA
 	//SE BORRARÍA LA ANTERIOR Y SE SUSTITUIRÍA POR LS NUEVA
 	
-	public static void Editar(String idRep, String matriculaRep, String fechaIni, String fechaFin, String averia, String estadoAveria){
+	public static void Editar(String idRep, String matriculaRep, String fechaIni, String fechaFin, String averia, String estadoAveria, String Comentario){
 		
 		if(!Buscar(idRep)) throw new RuntimeException("No se encontro la reparación a editar");
-		Aniadir(idRep, matriculaRep, fechaIni, fechaFin, averia, estadoAveria);
+		Aniadir(idRep, matriculaRep, fechaIni, fechaFin, averia, estadoAveria, Comentario);
 		listaReparaciones.remove(Obtener(idRep));
 	}
 	
