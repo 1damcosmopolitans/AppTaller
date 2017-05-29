@@ -43,7 +43,7 @@ public class ControlReparaciones {
 		return aux;
 	}
 	
-	public static ArrayList<Reparacion> listaPagados(String matricula){
+	public ArrayList<Reparacion> listaPagados(String matricula){
 		ArrayList<Reparacion> aux = new ArrayList<Reparacion>();
 		for(Reparacion i: listaTotal(matricula)){
 			if(i.getEstadoPago().equals("Pagado")){
@@ -54,7 +54,7 @@ public class ControlReparaciones {
 		return aux;
 	}
 	
-	public static ArrayList<Reparacion> listaPendientesPago(String matricula){
+	public ArrayList<Reparacion> listaPendientesPago(String matricula){
 		ArrayList<Reparacion> aux = new ArrayList<Reparacion>();
 		for(Reparacion i: listaTotal(matricula)){
 			if(i.getEstadoPago().equals("Pendiente")){
@@ -75,10 +75,10 @@ public class ControlReparaciones {
 		}
 	}
 
-	public static void Aniadir(String idRep, String matriculaRep, String fechaIni, String fechaFin,  String averia, String estadoAveria, String Comentario){
+	public static void Aniadir(String idRep, String matriculaRep, String fechaIni, String fechaFin,  String averia, String estadoAveria, String comentario){
 		if(Buscar(idRep)) throw new RuntimeException("No se puede añadir la reparación porque ya hay una con el mismo identificativo");
 		
-		listaReparaciones.add(new Reparacion(idRep, matriculaRep, fechaIni, fechaFin, averia, estadoAveria, Comentario));
+		listaReparaciones.add(new Reparacion(idRep, matriculaRep, fechaIni, fechaFin, averia, estadoAveria, comentario));
 	}	
 	public static Reparacion Obtener(String idRep){
 		Reparacion rep = null;
@@ -91,8 +91,8 @@ public class ControlReparaciones {
 		
 		return rep;
 	}
-
-
+	
+	
 	//IMPORTANTE RESPETAR EL ORDEN DE LAS INSTRUCCIONES YA QUE SI ELIMINAS DE LA LISTA ANTES DE EJECUTAR LA FUNCION ANIADIR
 	//EN EL CASO DE QUE UN USUARIO INTENTE MODIFICAR UNA ID DE UNA REPARACIÓN POR OTRA NUEVA YA EXISTENTE DENTRO DE LA LISTA
 	//SE BORRARÍA LA ANTERIOR Y SE SUSTITUIRÍA POR LS NUEVA
