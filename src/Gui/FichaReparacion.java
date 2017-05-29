@@ -33,6 +33,9 @@ import java.util.Calendar;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Color;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 
 public class FichaReparacion extends JFrame {
@@ -63,6 +66,9 @@ public class FichaReparacion extends JFrame {
 	private String matricula;
 	private String tipo;
 	private JButton btnEliminar;
+	private JMenuBar menuBar;
+	private JMenu mnLeer;
+	private JMenuItem mntmAadir;
 	
 
 	/**
@@ -98,7 +104,7 @@ public class FichaReparacion extends JFrame {
 		txtFldDni.setColumns(10);
 		
 		lblFichaReparacion = new JLabel("FICHA REPARACION");
-		lblFichaReparacion.setBounds(208, 11, 203, 27);
+		lblFichaReparacion.setBounds(208, 33, 203, 27);
 		lblFichaReparacion.setFont(new Font("Tahoma", Font.BOLD, 18));
 		getContentPane().add(lblFichaReparacion);
 		
@@ -289,16 +295,16 @@ public class FichaReparacion extends JFrame {
 		getContentPane().add(btnSalir);
 		
 		JButton btnIzq = new JButton("<");
-		btnIzq.setBounds(441, 16, 89, 40);
+		btnIzq.setBounds(443, 46, 89, 40);
 		getContentPane().add(btnIzq);
 		
 		JLabel lblDe = new JLabel("0 de 0");
 		lblDe.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblDe.setBounds(553, 27, 46, 14);
+		lblDe.setBounds(552, 57, 46, 14);
 		getContentPane().add(lblDe);
 		
 		JButton btnDerecha = new JButton(">");
-		btnDerecha.setBounds(617, 16, 89, 40);
+		btnDerecha.setBounds(614, 46, 89, 40);
 		getContentPane().add(btnDerecha);
 		
 		btnEliminar = new JButton("ELIMINAR");
@@ -309,8 +315,33 @@ public class FichaReparacion extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnEliminar.setBounds(514, 89, 131, 70);
+		btnEliminar.setBounds(514, 135, 131, 70);
 		getContentPane().add(btnEliminar);
+		
+		menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 713, 27);
+		getContentPane().add(menuBar);
+		
+		JMenu mnAadir = new JMenu("Nuevo");
+		menuBar.add(mnAadir);
+		
+		mntmAadir = new JMenuItem("A\u00F1adir reparaci\u00F3n");
+		mnAadir.add(mntmAadir);
+		
+		mnLeer = new JMenu("Leer");
+		menuBar.add(mnLeer);
+		
+		JMenuItem mntmPendienteDeReparacion = new JMenuItem("Pendiente de Reparacion");
+		mnLeer.add(mntmPendienteDeReparacion);
+		
+		JMenuItem mntmReparados = new JMenuItem("Reparados");
+		mnLeer.add(mntmReparados);
+		
+		JMenuItem mntmPagados = new JMenuItem("Pagados");
+		mnLeer.add(mntmPagados);
+		
+		JMenuItem mntmPendienteDePago = new JMenuItem("Pendiente de Pago");
+		mnLeer.add(mntmPendienteDePago);
 			
 	}
 	/**
