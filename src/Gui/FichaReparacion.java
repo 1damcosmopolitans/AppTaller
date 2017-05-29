@@ -36,6 +36,7 @@ import java.awt.Color;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.SwingConstants;
 
 
 public class FichaReparacion extends JFrame {
@@ -257,7 +258,7 @@ public class FichaReparacion extends JFrame {
 					
 					if(isValidDate(txtFechaEntrega.getText()) && isValidDate(txtFechaIngreso.getText()) &&  !txtFldIdReparacion.getText().equals("") ){
 						try{
-							ControlReparaciones.Aniadir2(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(), txtFechaEntrega.getText(),txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue());
+							//ControlReparaciones.Aniadir2(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(), txtFechaEntrega.getText(),txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue());
 							JOptionPane.showMessageDialog(null, "Se añadio con exito la descripcion de la reparación PAGADA para este vehículo", "GUARDAR REPARACION", JOptionPane.INFORMATION_MESSAGE);
 						//Editar
 							//ControlReparaciones.Editar2(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(),txtFechaEntrega.getText(), txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue());
@@ -282,7 +283,7 @@ public class FichaReparacion extends JFrame {
 				}
 			}
 		});
-		btnGuardar.setBounds(226, 519, 149, 47);
+		btnGuardar.setBounds(282, 519, 149, 47);
 		getContentPane().add(btnGuardar);
 		
 		btnSalir = new JButton("SALIR");
@@ -291,32 +292,8 @@ public class FichaReparacion extends JFrame {
 				dispose();
 			}
 		});
-		btnSalir.setBounds(495, 519, 89, 47);
+		btnSalir.setBounds(597, 519, 89, 47);
 		getContentPane().add(btnSalir);
-		
-		JButton btnIzq = new JButton("<");
-		btnIzq.setBounds(443, 46, 89, 40);
-		getContentPane().add(btnIzq);
-		
-		JLabel lblDe = new JLabel("0 de 0");
-		lblDe.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblDe.setBounds(552, 57, 46, 14);
-		getContentPane().add(lblDe);
-		
-		JButton btnDerecha = new JButton(">");
-		btnDerecha.setBounds(614, 46, 89, 40);
-		getContentPane().add(btnDerecha);
-		
-		btnEliminar = new JButton("ELIMINAR");
-		btnEliminar.setForeground(Color.WHITE);
-		btnEliminar.setBackground(Color.BLUE);
-		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnEliminar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnEliminar.setBounds(514, 135, 131, 70);
-		getContentPane().add(btnEliminar);
 		
 		menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 713, 27);
@@ -342,6 +319,36 @@ public class FichaReparacion extends JFrame {
 		
 		JMenuItem mntmPendienteDePago = new JMenuItem("Pendiente de Pago");
 		mnLeer.add(mntmPendienteDePago);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(439, 33, 264, 199);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JButton btnIzq = new JButton("<");
+		btnIzq.setBounds(10, 6, 87, 48);
+		panel.add(btnIzq);
+		
+		JLabel lblDe = new JLabel("0 de 0");
+		lblDe.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDe.setBounds(107, 20, 54, 17);
+		panel.add(lblDe);
+		lblDe.setFont(new Font("Tahoma", Font.BOLD, 14));
+		
+		btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.setBounds(10, 60, 244, 128);
+		panel.add(btnEliminar);
+		btnEliminar.setForeground(Color.WHITE);
+		btnEliminar.setBackground(Color.BLUE);
+		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		
+		JButton btnDerecha = new JButton(">");
+		btnDerecha.setBounds(171, 6, 83, 48);
+		panel.add(btnDerecha);
 			
 	}
 	/**
