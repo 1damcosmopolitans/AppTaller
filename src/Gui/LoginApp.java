@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -86,6 +87,7 @@ public class LoginApp extends JFrame {
 		getContentPane().add(lberror2);
 
 		JButton BotonListo_1 = new JButton("ENTRAR");
+		ImageIcon icono=new ImageIcon("Imagenes/Entrar.png");
 		BotonListo_1.setBounds(1211, 175, 200, 132);
 		BotonListo_1.setBackground(new Color(124, 252, 0));
 		BotonListo_1.setForeground(Color.BLACK);

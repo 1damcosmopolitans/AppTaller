@@ -1,43 +1,56 @@
 package DAO;
-import java.sql.*;  
 
-public class connectURL {  
+import java.sql.*;
 
-   public static void main(String[] args) {  
+public class connectURL {
 
-      // Create a variable for the connection string.  
-      String connectionUrl = "jdbc:sqlserver://DESKTOP-NSNEPC8\\SQLJUAN:1433;" +  
-         "databaseName=AdventureWorks;user=cosmopolitans;password=fresas";  
+	public static boolean login(String usuario, String pass) {
 
-      // Declare the JDBC objects.  
-      Connection con = null;  
-      Statement stmt = null;  
-      ResultSet rs = null;  
+		// Create a variable for the connection string.
+		String connectionUrl = "jdbc:sqlserver://DESKTOP-NSNEPC8\\SQLJUAN:1433;"
+				+ "databaseName=Taller;user=java ;password=java1";
 
-      try {  
-         // Establish the connection.  
-         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");  
-         con = DriverManager.getConnection(connectionUrl);  
+		// Declare the JDBC objects.
+		Connection con = null;
+		Statement stmt = null;
+		ResultSet rs = null;
 
-         // Create and execute an SQL statement that returns some data.  
-         String SQL = "SELECT TOP 10 * FROM Empleado";  
-         stmt = con.createStatement();  
-         rs = stmt.executeQuery(SQL);  
+		try {
+			// Establish the connection.
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			con = DriverManager.getConnection(connectionUrl);
 
-         // Iterate through the data in the result set and display it.  
-         while (rs.next()) {  
-            System.out.println(rs.getString(4) + " " + rs.getString(6));  
-         }  
-      }  
+			// Create and execute an SQL statement that returns some data.
+			// String SQL = "SELECT TOP 10 * FROM Empleados";
+			stmt = con.createStatement(); 
+			rs = stmt.executeQuery("SELECT * FROM login WHERE usuario='"+usuario+"' AND password='"+pass+"'");
 
-      // Handle any errors that may have occurred.  
-      catch (Exception e) {  
-         e.printStackTrace();  
-      }  
-      finally {  
-         if (rs != null) try { rs.close(); } catch(Exception e) {}  
-         if (stmt != null) try { stmt.close(); } catch(Exception e) {}  
-         if (con != null) try { con.close(); } catch(Exception e) {}  
-      }  
-   }  
-}  
+			// Iterate through the data in the result set and display it.
+			while (rs.next()) {
+				return true;
+			}
+		}
+
+		// Handle any errors that may have occurred.
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (Exception e) {
+				}
+			if (stmt != null)
+				try {
+					stmt.close();
+				} catch (Exception e) {
+				}
+			if (con != null)
+				try {
+					con.close();
+				} catch (Exception e) {
+				}
+		}
+		return false;
+	}
+}
