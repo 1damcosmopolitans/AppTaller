@@ -9,17 +9,19 @@ package Models;
 		private String averia;
 		private String estadoAveria;				//0 :inicial, 1:intermedio, 2:Avanzado, 3:reparado
 		private String estadoPago;
+		private String comentario;
 		
 		
 		
 		
 		public Reparacion(String idRep, String matriculaRep, String fechaIni, String fechaFin, 
-				String averia, String estadoAveria) {
+				String averia, String estadoAveria, String comentario) {
 			super();
 			this.idRep = idRep;
 			this.matriculaRep = matriculaRep;
 			this.fechaIni = fechaIni;
 			this.fechaFin = fechaFin;
+			this.comentario = comentario;
 		
 			this.averia = averia;					//Comentarios
 			this.estadoAveria = estadoAveria;		//Pendiente o pagado
@@ -34,6 +36,10 @@ package Models;
 
 		public String getIdRep() {
 			return idRep;
+		}
+		
+		public String getComentario(){
+			return comentario;
 		}
 		public void setIdRep(String idRep) {
 			this.idRep = idRep;
@@ -52,6 +58,10 @@ package Models;
 		}
 		public String getFechaFin() {
 			return fechaFin;
+		}
+		
+		public void setComentario(String comentario){
+			this.comentario= comentario;
 		}
 		public void setFechaFin(String fechaFin) {
 			this.fechaFin = fechaFin;

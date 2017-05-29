@@ -118,6 +118,8 @@ public class FichaVehiculo extends JFrame{
 				new FichaReparacion(txtMatricula.getText(), txtDni.getText(),(String)listVehiculo.getSelectedValue()).setVisible(true);		//Modo escritura cogiendo los datos de ficha vehiculos
 			}
 		});
+		
+		
 		btnReparacion.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnReparacion.setBounds(283, 181, 116, 81);
 		getContentPane().add(btnReparacion);

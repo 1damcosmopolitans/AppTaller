@@ -6,18 +6,21 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import Controllers.ControlClientes;
 import Controllers.ControlReparaciones;
 import Controllers.ControlVehiculos;
+import Models.Reparacion;
 import Models.Vehiculo;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -26,16 +29,20 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.AbstractListModel;
 import javax.swing.JToggleButton;
 import javax.swing.JPanel;
+
 import java.util.Calendar;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.Color;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.SwingConstants;
 
 
 public class FichaReparacion extends JFrame {
@@ -69,7 +76,6 @@ public class FichaReparacion extends JFrame {
 	private JMenuBar menuBar;
 	private JMenu mnLeer;
 	private JMenuItem mntmAadir;
-	
 
 	/**
 	 * CONSTRUCTOR
@@ -269,7 +275,7 @@ public class FichaReparacion extends JFrame {
 						
 					}else{  //PRIMERA LISTA
 					try{
-						ControlReparaciones.Aniadir(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(), txtFechaEntrega.getText(),txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue());
+						ControlReparaciones.Aniadir(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(), txtFechaEntrega.getText(),txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue(), txtAreaDescripcion.getText());
 						JOptionPane.showMessageDialog(null, "Se añadio con exito la descripcion de la reparación para este vehículo", "GUARDAR REPARACION", JOptionPane.INFORMATION_MESSAGE);
 						//Editar
 						//ControlReparaciones.Editar(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(),txtFechaEntrega.getText(), txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue());
@@ -282,7 +288,7 @@ public class FichaReparacion extends JFrame {
 				}
 			}
 		});
-		btnGuardar.setBounds(226, 519, 149, 47);
+		btnGuardar.setBounds(282, 519, 149, 47);
 		getContentPane().add(btnGuardar);
 		
 		btnSalir = new JButton("SALIR");
@@ -291,32 +297,8 @@ public class FichaReparacion extends JFrame {
 				dispose();
 			}
 		});
-		btnSalir.setBounds(495, 519, 89, 47);
+		btnSalir.setBounds(597, 519, 89, 47);
 		getContentPane().add(btnSalir);
-		
-		JButton btnIzq = new JButton("<");
-		btnIzq.setBounds(443, 46, 89, 40);
-		getContentPane().add(btnIzq);
-		
-		JLabel lblDe = new JLabel("0 de 0");
-		lblDe.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblDe.setBounds(552, 57, 46, 14);
-		getContentPane().add(lblDe);
-		
-		JButton btnDerecha = new JButton(">");
-		btnDerecha.setBounds(614, 46, 89, 40);
-		getContentPane().add(btnDerecha);
-		
-		btnEliminar = new JButton("ELIMINAR");
-		btnEliminar.setForeground(Color.WHITE);
-		btnEliminar.setBackground(Color.BLUE);
-		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnEliminar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnEliminar.setBounds(514, 135, 131, 70);
-		getContentPane().add(btnEliminar);
 		
 		menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 713, 27);
@@ -342,7 +324,60 @@ public class FichaReparacion extends JFrame {
 		
 		JMenuItem mntmPendienteDePago = new JMenuItem("Pendiente de Pago");
 		mnLeer.add(mntmPendienteDePago);
-			
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(439, 33, 264, 199);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JButton btnIzq = new JButton("<");
+		btnIzq.setBounds(10, 6, 87, 48);
+		panel.add(btnIzq);
+		
+		JLabel lblDe = new JLabel("0 de 0");
+		lblDe.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDe.setBounds(107, 20, 54, 17);
+		panel.add(lblDe);
+		lblDe.setFont(new Font("Tahoma", Font.BOLD, 14));
+		
+		btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.setBounds(10, 60, 244, 128);
+		panel.add(btnEliminar);
+		btnEliminar.setForeground(Color.WHITE);
+		btnEliminar.setBackground(Color.BLUE);
+		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		
+		JButton btnDerecha = new JButton(">");
+		btnDerecha.setBounds(171, 6, 83, 48);
+		panel.add(btnDerecha);
+		
+	if(ControlReparaciones.listaAverias(matricula).isEmpty()){
+		panel.setVisible(false);
+		
+	
+	}else{
+		
+		Reparacion aux = ControlReparaciones.listaAverias(matricula).get(0);
+		Vehiculo aux2 = ControlVehiculos.Obtener(matricula);
+		
+		txtFechaEntrega.setText(aux.getFechaFin());
+		txtFechaIngreso.setText(aux.getFechaIni());
+		txtFldIdReparacion.setText(aux.getIdRep());
+		txtFldMatricula.setText(aux.getMatriculaRep());
+		txtFldDni.setText(aux2.getDnipropietario());
+		txtTipoVehiculo.setText(aux2.getTipo());
+		pagoList.setSelectedValue(aux.getEstadoPago(),true);
+		txtAreaDescripcion.setText(aux.getComentario());
+		
+		
+		
+	}
+	
+	
 	}
 	/**
 	 * Validaciones de fechas
