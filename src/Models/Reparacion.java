@@ -1,5 +1,5 @@
 package Models;
-	import java.util.Calendar;
+
 import java.util.regex.Pattern;
 	public class Reparacion {
 		
@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 		private String estadoAveria;
 		private String estadoPago;
 		private String comentario;
-		private final String FormatoFecha = "\\d{1,2}/\\d{1,2}/\\d{4}";
+		private final String FormatoFecha = "([12][0-9]|3[01]|0?[1-9])/(0?[1-9]|1[012])/((?:19|20)\\d\\d)";
 		
 		
 		
@@ -69,7 +69,7 @@ import java.util.regex.Pattern;
 		}
 		public void setFechaFin(String fechaFin) {
 			if(!(fechaFin.equals("") || fechaFin == null))
-			if(!Pattern.matches(FormatoFecha, fechaFin)) throw new RuntimeException("Fecha final incorrecta (DD/MM/AAAA)");
+				if(!Pattern.matches(FormatoFecha, fechaFin)) throw new RuntimeException("Fecha final incorrecta (DD/MM/AAAA)");
 			this.fechaFin = fechaFin;
 		}
 	
@@ -95,11 +95,6 @@ import java.util.regex.Pattern;
 		public void setEstadoPago(String estadoPago){
 			this.estadoPago = estadoPago;
 		}
-		
-		
-		
-		
 
-		
 	
 	}
