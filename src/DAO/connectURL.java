@@ -8,7 +8,7 @@ public class connectURL {
 
 		// Create a variable for the connection string.
 		String connectionUrl = "jdbc:sqlserver://DESKTOP-NSNEPC8\\SQLJUAN:1433;"
-				+ "databaseName=Taller;user=java ;password=java1";
+				+ "databaseName=Taller;user=cosmopolitans ;password=fresas";
 
 		// Declare the JDBC objects.
 		Connection con = null;
