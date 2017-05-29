@@ -26,22 +26,6 @@ public class BuscaAlta extends JFrame{
 	private JTextField textFieldMatricula;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BuscaAlta window = new BuscaAlta();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the application.
 	 */
 	public BuscaAlta() {

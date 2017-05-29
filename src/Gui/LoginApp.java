@@ -32,22 +32,6 @@ public class LoginApp extends JFrame {
 	private JButton btnSalir;
 
 	/**
-	 * Inicio de la aplicación
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginApp window = new LoginApp();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the application.
 	 */
 	public LoginApp() {
