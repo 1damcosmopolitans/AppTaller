@@ -32,6 +32,7 @@ import javax.swing.JPanel;
 import java.util.Calendar;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Color;
 
 
 public class FichaReparacion extends JFrame {
@@ -61,6 +62,7 @@ public class FichaReparacion extends JFrame {
 	private String dniPropietario;
 	private String matricula;
 	private String tipo;
+	private JButton btnEliminar;
 	
 
 	/**
@@ -78,7 +80,7 @@ public class FichaReparacion extends JFrame {
 	private void initialize() {
 		
 		getContentPane().setLayout(null);
-		setBounds(200, 100, 632, 616);
+		setBounds(200, 100, 729, 616);
 		
 		
 		lblDniPropietario = new JLabel("DNI PROPIETARIO");
@@ -285,6 +287,30 @@ public class FichaReparacion extends JFrame {
 		});
 		btnSalir.setBounds(495, 519, 89, 47);
 		getContentPane().add(btnSalir);
+		
+		JButton btnIzq = new JButton("<");
+		btnIzq.setBounds(441, 16, 89, 40);
+		getContentPane().add(btnIzq);
+		
+		JLabel lblDe = new JLabel("0 de 0");
+		lblDe.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblDe.setBounds(553, 27, 46, 14);
+		getContentPane().add(lblDe);
+		
+		JButton btnDerecha = new JButton(">");
+		btnDerecha.setBounds(617, 16, 89, 40);
+		getContentPane().add(btnDerecha);
+		
+		btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.setForeground(Color.WHITE);
+		btnEliminar.setBackground(Color.BLUE);
+		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnEliminar.setBounds(514, 89, 131, 70);
+		getContentPane().add(btnEliminar);
 			
 	}
 	/**
