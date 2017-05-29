@@ -255,25 +255,6 @@ public class FichaReparacion extends JFrame {
 		btnGuardar.addMouseListener(new MouseAdapter() {
 			@Override //(String idRep, String matriculaRep, Calendar fechaIni, Calendar fechaFin, int idFactura, String averia, String estado)
 			public void mouseClicked(MouseEvent arg0) {
-				if(txtFldIdReparacion.getText() == null || txtFldIdReparacion.getText().equals("") || txtFechaIngreso.getText()== null || !isValidDate(txtFechaIngreso.getText())){					
-					JOptionPane.showMessageDialog(null,"Debes ingresar un Id de reparacion y una fecha de ingreso válida para poder guardar los detalles de la reparacion!");				
-				}else{
-				
-					//El primer IF ES cuando se selecciona y es validada una fecha de salida, que da a entender que es hay que consultar la lista de las reparacionespagadas
-					
-					if(isValidDate(txtFechaEntrega.getText()) && isValidDate(txtFechaIngreso.getText()) &&  !txtFldIdReparacion.getText().equals("") ){
-						try{
-							//ControlReparaciones.Aniadir2(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(), txtFechaEntrega.getText(),txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue());
-							JOptionPane.showMessageDialog(null, "Se añadio con exito la descripcion de la reparación PAGADA para este vehículo", "GUARDAR REPARACION", JOptionPane.INFORMATION_MESSAGE);
-						//Editar
-							//ControlReparaciones.Editar2(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(),txtFechaEntrega.getText(), txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue());
-							//JOptionPane.showMessageDialog(null, "Se modificó con exito la ficha de la reparación para este vehículo", "REPARACION EDITADA", JOptionPane.INFORMATION_MESSAGE);
-						//}
-						}catch(Exception e){
-						JOptionPane.showMessageDialog(null, e.getMessage(),"ERROR AL AÑADIR LA REPARACIÓN", JOptionPane.ERROR_MESSAGE);
-						}
-						
-					}else{  //PRIMERA LISTA
 					try{
 						ControlReparaciones.Aniadir(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(), txtFechaEntrega.getText(),txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue(), txtAreaDescripcion.getText());
 						JOptionPane.showMessageDialog(null, "Se añadio con exito la descripcion de la reparación para este vehículo", "GUARDAR REPARACION", JOptionPane.INFORMATION_MESSAGE);
@@ -284,9 +265,7 @@ public class FichaReparacion extends JFrame {
 					}catch(Exception e){
 					JOptionPane.showMessageDialog(null, e.getMessage(),"ERROR AL AÑADIR LA REPARACIÓN", JOptionPane.ERROR_MESSAGE);
 					}
-					}
 				}
-			}
 		});
 		btnGuardar.setBounds(282, 519, 149, 47);
 		getContentPane().add(btnGuardar);

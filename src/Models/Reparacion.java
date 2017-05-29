@@ -1,5 +1,6 @@
 package Models;
 	import java.util.Calendar;
+import java.util.regex.Pattern;
 	public class Reparacion {
 		
 		private String idRep;
@@ -7,24 +8,24 @@ package Models;
 		private String fechaIni;
 		private String fechaFin;
 		private String averia;
-		private String estadoAveria;				//0 :inicial, 1:intermedio, 2:Avanzado, 3:reparado
+		private String estadoAveria;
 		private String estadoPago;
 		private String comentario;
-		
+		private final String FormatoFecha = "\\d{1,2}/\\d{1,2}/\\d{4}";
 		
 		
 		
 		public Reparacion(String idRep, String matriculaRep, String fechaIni, String fechaFin, 
 				String averia, String estadoAveria, String comentario) {
 			super();
-			this.idRep = idRep;
-			this.matriculaRep = matriculaRep;
-			this.fechaIni = fechaIni;
-			this.fechaFin = fechaFin;
-			this.comentario = comentario;
-		
-			this.averia = averia;					//Comentarios
-			this.estadoAveria = estadoAveria;		//Pendiente o pagado
+			setIdRep(idRep);
+			setMatriculaRep(matriculaRep);
+			setAveria(estadoAveria);
+			setComentario(comentario);
+			setEstadoAveria(estadoAveria);
+			setEstadoPago(estadoAveria);
+			setFechaFin(fechaFin);
+			setFechaIni(fechaIni);
 		}
 		
 		@Override
@@ -42,6 +43,7 @@ package Models;
 			return comentario;
 		}
 		public void setIdRep(String idRep) {
+			if(idRep.equals("") || idRep == null) throw new RuntimeException("El id no puede estar vacío.");
 			this.idRep = idRep;
 		}
 		public String getMatriculaRep() {
@@ -54,6 +56,8 @@ package Models;
 			return fechaIni;
 		}
 		public void setFechaIni(String fechaIni) {
+			if(Pattern.matches(FormatoFecha, fechaIni)) throw new RuntimeException("Fecha de inicio incorrecta (DD/MM/AAAA).");
+
 			this.fechaIni = fechaIni;
 		}
 		public String getFechaFin() {
@@ -64,6 +68,7 @@ package Models;
 			this.comentario= comentario;
 		}
 		public void setFechaFin(String fechaFin) {
+			if(Pattern.matches(FormatoFecha, fechaFin)) throw new RuntimeException("Fecha de inicio incorrecta (DD/MM/AAAA)");
 			this.fechaFin = fechaFin;
 		}
 	

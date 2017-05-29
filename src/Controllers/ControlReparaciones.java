@@ -84,7 +84,7 @@ public class ControlReparaciones {
 		Reparacion rep = null;
 		
 		for(Reparacion i: listaReparaciones){
-			if(i.getIdRep()== idRep){
+			if(i.getIdRep().equals(idRep)){
 				rep = i;
 			}
 		}
