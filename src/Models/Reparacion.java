@@ -68,7 +68,7 @@ import java.util.regex.Pattern;
 			this.comentario= comentario;
 		}
 		public void setFechaFin(String fechaFin) {
-			if(Pattern.matches(FormatoFecha, fechaFin)) throw new RuntimeException("Fecha de inicio incorrecta (DD/MM/AAAA)");
+			if(!Pattern.matches(FormatoFecha, fechaFin)) throw new RuntimeException("Fecha de inicio incorrecta (DD/MM/AAAA)");
 			this.fechaFin = fechaFin;
 		}
 	
