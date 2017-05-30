@@ -326,6 +326,22 @@ public class FichaReparacion extends JFrame {
 				
 			}
 		});
+		
+		JMenuItem mntmFichasTotales = new JMenuItem("Fichas Totales");
+		mntmFichasTotales.addMouseListener(new MouseAdapter(){
+			@Override
+			public void mousePressed(MouseEvent e){
+				ListaTemporal = ControlReparaciones.listaTotal(matricula);
+				indice = 0;
+				Comprobador();
+			}
+			
+			
+			
+			
+		});
+		
+		mnLeer.add(mntmFichasTotales);
 		mnLeer.add(mntmPendienteDeReparacion);
 		
 		JMenuItem mntmReparados = new JMenuItem("Reparados");

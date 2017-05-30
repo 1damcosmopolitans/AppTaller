@@ -55,40 +55,40 @@ public class LoginApp extends JFrame {
 				getContentPane().setLayout(null);
 		
 				JLabel lblUsuario = new JLabel("Usuario:");
-				lblUsuario.setBounds(263, 130, 224, 152);
+				lblUsuario.setBounds(94, 155, 224, 152);
 				lblUsuario.setFont(new Font("Sylfaen", Font.PLAIN, 50));
 				getContentPane().add(lblUsuario);
 
 		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setBounds(263, 359, 224, 158);
+		lblPassword.setBounds(94, 359, 224, 158);
 		lblPassword.setFont(new Font("Sylfaen", Font.PLAIN, 50));
 		getContentPane().add(lblPassword);
 
 		textUsuario = new JTextArea();
-		textUsuario.setBounds(628, 175, 428, 109);
+		textUsuario.setBounds(343, 175, 428, 109);
 		textUsuario.setFont(new Font("Berlin Sans FB", Font.PLAIN, 45));
 		getContentPane().add(textUsuario);
 
 		passwordField = new JPasswordField();
-		passwordField.setBounds(628, 376, 428, 109);
+		passwordField.setBounds(343, 376, 428, 109);
 		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		getContentPane().add(passwordField);
 
 		lberror1 = new JLabel("");
-		lberror1.setBounds(638, 292, 419, 50);
+		lberror1.setBounds(373, 295, 419, 50);
 		lberror1.setForeground(new Color(204, 0, 0));
 		lberror1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		getContentPane().add(lberror1);
 
 		lberror2 = new JLabel("");
-		lberror2.setBounds(628, 490, 428, 50);
+		lberror2.setBounds(373, 496, 428, 50);
 		lberror2.setForeground(new Color(204, 0, 0));
 		lberror2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		getContentPane().add(lberror2);
 
 		JButton BotonListo_1 = new JButton("ENTRAR");
 		ImageIcon icono=new ImageIcon("Imagenes/Entrar.png");
-		BotonListo_1.setBounds(1211, 175, 200, 132);
+		BotonListo_1.setBounds(901, 155, 200, 132);
 		BotonListo_1.setBackground(new Color(124, 252, 0));
 		BotonListo_1.setForeground(Color.BLACK);
 		BotonListo_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
@@ -104,7 +104,7 @@ public class LoginApp extends JFrame {
 		});
 		btnSalir.setForeground(Color.WHITE);
 		btnSalir.setBackground(new Color(255, 102, 102));
-		btnSalir.setBounds(1211, 354, 200, 131);
+		btnSalir.setBounds(901, 376, 200, 131);
 		getContentPane().add(btnSalir);
 		
 		

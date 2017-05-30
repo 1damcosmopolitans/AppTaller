@@ -13,7 +13,7 @@ public class ControlReparaciones {
 	public static boolean Borrar(Reparacion aux){
 		return listaReparaciones.remove(aux);
 	}
-	private static ArrayList<Reparacion> listaTotal(String matricula){
+	public static ArrayList<Reparacion> listaTotal(String matricula){
 		ArrayList<Reparacion> aux = new ArrayList<Reparacion>();
 		for(Reparacion i: listaReparaciones){
 			if(i.getMatriculaRep().equals(matricula)){
