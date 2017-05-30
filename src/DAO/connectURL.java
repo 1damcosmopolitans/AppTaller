@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class connectURL {
 
-	public static boolean login(String usuario, String pass) {
+	public static boolean login(String usuario, int pass) {
 
 		// Create a variable for the connection string.
 		String connectionUrl = "jdbc:sqlserver://DESKTOP-NSNEPC8\\SQLJUAN:1433;"
@@ -23,7 +23,7 @@ public class connectURL {
 			// Create and execute an SQL statement that returns some data.
 			// String SQL = "SELECT TOP 10 * FROM Empleados";
 			stmt = con.createStatement(); 
-			rs = stmt.executeQuery("SELECT * FROM login WHERE usuario='"+usuario+"' AND password='"+pass+"'");
+			rs = stmt.executeQuery("SELECT * FROM Empleado WHERE usuario='"+usuario+"' AND password='"+pass+"'");
 
 			// Iterate through the data in the result set and display it.
 			while (rs.next()) {
