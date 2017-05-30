@@ -193,6 +193,7 @@ public class FichaObra extends JFrame{
 				float precioPiezas = Float.parseFloat(textPiezas.getText());
 				int tiempoMin = Integer.parseInt(textTiempo.getText());
 				textPrecio.setText("" + (precioPiezas + (float)(tiempoMin*precioMin)));
+				JOptionPane.showMessageDialog(null, "Precio calculado con éxito", "CALCULAR PRECIO", JOptionPane.INFORMATION_MESSAGE);
 				}catch(Exception e){
 					JOptionPane.showMessageDialog(null, "Error algún campo es incorrecto", "ERROR CALCULAR PRECIO", JOptionPane.ERROR_MESSAGE);
 				}
