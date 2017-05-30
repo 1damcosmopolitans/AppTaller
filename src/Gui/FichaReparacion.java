@@ -84,6 +84,7 @@ public class FichaReparacion extends JFrame {
 	private JTextArea txtAreaDescripcion;
 	private ArrayList<Reparacion> ListaTemporal;
 	private int indice;
+	JButton btnReparar;
 
 	
 
@@ -434,6 +435,18 @@ public class FichaReparacion extends JFrame {
 		});
 		btnDerecha.setBounds(171, 6, 83, 48);
 		panel.add(btnDerecha);
+		
+		btnReparar = new JButton("REPARAR");
+		btnReparar.addMouseListener(new MouseAdapter() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				//FichaObra.setVisible(true);
+				FichaReparacion.this.setVisible(false);
+			}
+		});
+		btnReparar.setBounds(473, 248, 203, 43);
+		btnReparar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		getContentPane().add(btnReparar);
 		
 		Comprobador();
 	
