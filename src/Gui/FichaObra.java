@@ -10,20 +10,26 @@ import javax.swing.JButton;
 
 public class FichaObra extends JFrame{
 
+	private String IdReparacion;
 	private JFrame frame;
-	JLabel lblFichaObra ;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JLabel lblFichaObra ;
+	private JTextField txtIdReparacion;
+	private JTextField txtTpoInvertido;
+	private JTextField txtCostePiezas;
+	private JTextField txtTotalPrecio;
 	private JButton btnIniRep;
 	private JButton btnFinRep;
-	private JButton button_1;
-
+	private JButton btnGuardar;
+	private JLabel lblTpoInvertido;
+	private JLabel lblIdReparacion;
+	private JLabel lblCostePiezas;
+	private JLabel lblTotal;
+	
+	
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -34,12 +40,30 @@ public class FichaObra extends JFrame{
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
 	 */
-	public FichaObra() {
+	public FichaObra(String IdReparacion) {
+		this.IdReparacion = IdReparacion;
+		
+		initialize();
+		setEventos();
+		
+	}
+	
+		
+	
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		getContentPane().setLayout(null);
 		
 		lblFichaObra = new JLabel("FICHA OBRA");
@@ -48,45 +72,46 @@ public class FichaObra extends JFrame{
 		getContentPane().add(lblFichaObra);
 		getContentPane().add(lblFichaObra);
 		
-		JLabel lblTpoInvertido = new JLabel("TIEMPO INVERTIDO");
+		lblTpoInvertido = new JLabel("TIEMPO INVERTIDO");
 		lblTpoInvertido.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblTpoInvertido.setBounds(25, 175, 160, 27);
 		getContentPane().add(lblTpoInvertido);
 		
-		JLabel lblIdReparacion = new JLabel("ID REPARACION");
+		lblIdReparacion = new JLabel("ID REPARACION");
 		lblIdReparacion.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblIdReparacion.setBounds(25, 107, 141, 27);
 		getContentPane().add(lblIdReparacion);
 		
-		JLabel lblCostePiezas = new JLabel("COSTE PIEZAS");
+		lblCostePiezas = new JLabel("COSTE PIEZAS");
 		lblCostePiezas.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblCostePiezas.setBounds(25, 248, 141, 27);
 		getContentPane().add(lblCostePiezas);
 		
-		JLabel lblTotal = new JLabel("TOTAL");
+		lblTotal = new JLabel("TOTAL");
 		lblTotal.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblTotal.setBounds(25, 345, 95, 27);
 		getContentPane().add(lblTotal);
 		
-		textField = new JTextField();
-		textField.setBounds(195, 110, 218, 25);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		txtIdReparacion = new JTextField();
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(195, 178, 218, 25);
-		getContentPane().add(textField_1);
+		txtIdReparacion.setBounds(195, 110, 218, 25);
+		getContentPane().add(txtIdReparacion);
+		txtIdReparacion.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(195, 248, 218, 25);
-		getContentPane().add(textField_2);
+		txtTpoInvertido = new JTextField();
+		txtTpoInvertido.setColumns(10);
+		txtTpoInvertido.setBounds(195, 178, 218, 25);
+		getContentPane().add(txtTpoInvertido);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(125, 345, 218, 25);
-		getContentPane().add(textField_3);
+		txtCostePiezas = new JTextField();
+		txtCostePiezas.setColumns(10);
+		txtCostePiezas.setBounds(195, 248, 218, 25);
+		getContentPane().add(txtCostePiezas);
+		
+		txtTotalPrecio = new JTextField();
+		txtTotalPrecio.setColumns(10);
+		txtTotalPrecio.setBounds(125, 345, 218, 25);
+		getContentPane().add(txtTotalPrecio);
 		
 		btnIniRep = new JButton("INICIO");
 		btnIniRep.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -98,19 +123,16 @@ public class FichaObra extends JFrame{
 		btnFinRep.setBounds(479, 221, 203, 43);
 		getContentPane().add(btnFinRep);
 		
-		button_1 = new JButton("GUARDAR");
-		button_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		button_1.setBounds(479, 329, 203, 43);
-		getContentPane().add(button_1);
-		initialize();
+		btnGuardar = new JButton("GUARDAR");
+		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnGuardar.setBounds(479, 329, 203, 43);
+		getContentPane().add(btnGuardar);
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
+	
+	
+	public void setEventos(){
+		
+		
 	}
 }
