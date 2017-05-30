@@ -99,7 +99,6 @@ public class FichaReparacion extends JFrame {
 		ListaTemporal = ControlReparaciones.listaAverias(matricula);
 		indice = 0;
 		initialize();
-		setEventos();
 	}
 	
 	private void initialize() {
@@ -326,22 +325,6 @@ public class FichaReparacion extends JFrame {
 				
 			}
 		});
-		
-		JMenuItem mntmFichasTotales = new JMenuItem("Fichas Totales");
-		mntmFichasTotales.addMouseListener(new MouseAdapter(){
-			@Override
-			public void mousePressed(MouseEvent e){
-				ListaTemporal = ControlReparaciones.listaTotal(matricula);
-				indice = 0;
-				Comprobador();
-			}
-			
-			
-			
-			
-		});
-		
-		mnLeer.add(mntmFichasTotales);
 		mnLeer.add(mntmPendienteDeReparacion);
 		
 		JMenuItem mntmReparados = new JMenuItem("Reparados");
@@ -378,7 +361,7 @@ public class FichaReparacion extends JFrame {
 		mnLeer.add(mntmPendienteDePago);
 		
 		panel = new JPanel();
-		panel.setBounds(439, 33, 264, 199);
+		panel.setBounds(439, 33, 264, 258);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -453,16 +436,15 @@ public class FichaReparacion extends JFrame {
 		panel.add(btnDerecha);
 		
 		btnReparar = new JButton("REPARAR");
+		btnReparar.setBounds(34, 204, 203, 43);
+		panel.add(btnReparar);
 		btnReparar.addMouseListener(new MouseAdapter() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				//FichaObra.setVisible(true);
-				FichaReparacion.this.setVisible(false);
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new FichaObra(ListaTemporal.get(indice)).setVisible(true);
 			}
 		});
-		btnReparar.setBounds(473, 248, 203, 43);
 		btnReparar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		getContentPane().add(btnReparar);
 		
 		Comprobador();
 	
@@ -566,36 +548,4 @@ public class FichaReparacion extends JFrame {
 		
 		
 	}
-	
-	
-	/**
-	 * Validaciones de fechas
-	 */
-	
-	
-	
-	
-	public boolean isValidDate(String inDate) {
-
-		if (inDate == null)
-		return false;
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-		dateFormat.setLenient(false);
-		try {
-		dateFormat.parse(inDate.trim());
-		}
-		catch (ParseException pe) {
-		return false;
-		}
-		return true;
-		}
-	
-	
-	/**
-	 * Los eventos al pulsar los botones
-	 */
-	public void setEventos(){
-	}
-	}
-	
-
+}

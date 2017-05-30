@@ -11,6 +11,8 @@ import java.util.regex.Pattern;
 		private String estadoAveria;
 		private String estadoPago;
 		private String comentario;
+		private int tiempoMin;
+		private float precioTotal;
 		private final String FormatoFecha = "([12][0-9]|3[01]|0?[1-9])/(0?[1-9]|1[012])/((?:19|20)\\d\\d)";
 		
 		
@@ -26,6 +28,8 @@ import java.util.regex.Pattern;
 			setEstadoPago(estadoPago);
 			setFechaFin(fechaFin);
 			setFechaIni(fechaIni);
+			tiempoMin = 0;
+			precioTotal = 0;
 		}
 		
 		@Override
@@ -97,4 +101,19 @@ import java.util.regex.Pattern;
 		}
 
 	
+		public int getTiempo(){
+			return tiempoMin;
+		}
+		
+		public float getPrecio(){
+			return precioTotal;
+		}
+		
+		public void incTiempo(int tiempomin){
+			tiempoMin += tiempomin;
+		}
+		
+		public void incPrecio(float precio){
+			precioTotal += precio;
+		}
 	}
