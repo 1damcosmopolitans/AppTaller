@@ -96,7 +96,7 @@ public class FichaReparacion extends JFrame {
 		this.matricula = matricula;
 		this.dniPropietario = dniPropietario;
 		this.tipo = tipo;
-		ListaTemporal = ControlReparaciones.listaAverias(matricula);
+		ListaTemporal = ControlReparaciones.listaTotal(matricula);
 		indice = 0;
 		initialize();
 	}
