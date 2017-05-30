@@ -20,6 +20,7 @@ import java.util.TimerTask;
 
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
+import java.awt.Color;
 
 public class FichaObra extends JFrame{
 
@@ -44,6 +45,7 @@ public class FichaObra extends JFrame{
 	 * Create the application.
 	 */
 	public FichaObra(Reparacion rep) {
+		getContentPane().setBackground(new Color(102, 153, 204));
 		reparacion = rep;
 		controlContador = true;
 		contador = null;
@@ -54,7 +56,7 @@ public class FichaObra extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setBounds(100, 100, 743, 516);
+		setBounds(100, 100, 823, 567);
 		getContentPane().setLayout(null);
 		
 		lblFichaObra = new JLabel("FICHA OBRA");
