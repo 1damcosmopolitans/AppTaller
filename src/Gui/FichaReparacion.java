@@ -511,9 +511,6 @@ public class FichaReparacion extends JFrame {
 		ModoLectura();
 		
 		
-		
-		
-		
 	}
 	}
 	/**
