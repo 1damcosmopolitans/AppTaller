@@ -10,6 +10,9 @@ public class ControlReparaciones {
 
 	private static ArrayList<Reparacion> listaReparaciones = new ArrayList<Reparacion>();//SE INSERTA EN ESTA LISTA SOLO SI SE INTRODUCE LA FECHA DE ENTREGA, ES DECIR QUE SE HA PAGADO LA REPARACIÓN :)
 	
+	public static boolean Borrar(Reparacion aux){
+		return listaReparaciones.remove(aux);
+	}
 	private static ArrayList<Reparacion> listaTotal(String matricula){
 		ArrayList<Reparacion> aux = new ArrayList<Reparacion>();
 		for(Reparacion i: listaReparaciones){
@@ -75,10 +78,10 @@ public class ControlReparaciones {
 		}
 	}
 
-	public static void Aniadir(String idRep, String matriculaRep, String fechaIni, String fechaFin,  String averia, String estadoAveria, String comentario){
+	public static void Aniadir(String idRep, String matriculaRep, String fechaIni, String fechaFin,  String estadoPago, String estadoAveria, String comentario){
 		if(Buscar(idRep)) throw new RuntimeException("No se puede añadir la reparación porque ya hay una con el mismo identificativo");
 		
-		listaReparaciones.add(new Reparacion(idRep, matriculaRep, fechaIni, fechaFin, averia, estadoAveria, comentario));
+		listaReparaciones.add(new Reparacion(idRep, matriculaRep, fechaIni, fechaFin, estadoPago, estadoAveria, comentario));
 	}	
 	public static Reparacion Obtener(String idRep){
 		Reparacion rep = null;

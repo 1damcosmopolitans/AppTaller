@@ -2,6 +2,7 @@ package Gui;
 
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.awt.Panel;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,6 +27,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -76,6 +78,14 @@ public class FichaReparacion extends JFrame {
 	private JMenuBar menuBar;
 	private JMenu mnLeer;
 	private JMenuItem mntmAadir;
+	private JLabel lblDe ;
+	private JButton btnVolver;
+	private JPanel panel;
+	private JTextArea txtAreaDescripcion;
+	private ArrayList<Reparacion> ListaTemporal;
+	private int indice;
+
+	
 
 	/**
 	 * CONSTRUCTOR
@@ -85,6 +95,8 @@ public class FichaReparacion extends JFrame {
 		this.matricula = matricula;
 		this.dniPropietario = dniPropietario;
 		this.tipo = tipo;
+		ListaTemporal = ControlReparaciones.listaAverias(matricula);
+		indice = 0;
 		initialize();
 		setEventos();
 	}
@@ -214,7 +226,7 @@ public class FichaReparacion extends JFrame {
 		lblDescripcion.setBounds(324, 302, 166, 24);
 		getContentPane().add(lblDescripcion);
 		
-		final JTextArea txtAreaDescripcion = new JTextArea();
+		txtAreaDescripcion = new JTextArea();
 		txtAreaDescripcion.setBounds(324, 337, 260, 171);
 		getContentPane().add(txtAreaDescripcion);
 		
@@ -236,7 +248,7 @@ public class FichaReparacion extends JFrame {
 		txtFechaIngreso.setBounds(208, 248, 216, 25);
 		getContentPane().add(txtFechaIngreso);
 		
-		JButton btnVolver = new JButton("VOLVER");
+		btnVolver = new JButton("VOLVER");
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -256,7 +268,7 @@ public class FichaReparacion extends JFrame {
 			@Override //(String idRep, String matriculaRep, Calendar fechaIni, Calendar fechaFin, int idFactura, String averia, String estado)
 			public void mouseClicked(MouseEvent arg0) {
 					try{
-						ControlReparaciones.Aniadir(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(), txtFechaEntrega.getText(),txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue(), txtAreaDescripcion.getText());
+						ControlReparaciones.Aniadir(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(), txtFechaEntrega.getText(),(String)pagoList.getSelectedValue(),(String)estadoList.getSelectedValue(), txtAreaDescripcion.getText());
 						JOptionPane.showMessageDialog(null, "Se añadio con exito la descripcion de la reparación para este vehículo", "GUARDAR REPARACION", JOptionPane.INFORMATION_MESSAGE);
 						//Editar
 						//ControlReparaciones.Editar(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(),txtFechaEntrega.getText(), txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue());
@@ -267,7 +279,7 @@ public class FichaReparacion extends JFrame {
 					}
 				}
 		});
-		btnGuardar.setBounds(282, 519, 158, 47);
+		btnGuardar.setBounds(282, 519, 149, 47);
 		getContentPane().add(btnGuardar);
 		
 		btnSalir = new JButton("SALIR");
@@ -287,39 +299,112 @@ public class FichaReparacion extends JFrame {
 		menuBar.add(mnAadir);
 		
 		mntmAadir = new JMenuItem("A\u00F1adir reparaci\u00F3n");
+		mntmAadir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+			ModoEscritura();
+				
+				
+			}
+		});
+	
 		mnAadir.add(mntmAadir);
 		
 		mnLeer = new JMenu("Leer");
 		menuBar.add(mnLeer);
 		
 		JMenuItem mntmPendienteDeReparacion = new JMenuItem("Pendiente de Reparacion");
+		mntmPendienteDeReparacion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				ListaTemporal = ControlReparaciones.listaAverias(matricula);
+				indice=0;
+				Comprobador();
+				
+				
+			}
+		});
 		mnLeer.add(mntmPendienteDeReparacion);
 		
 		JMenuItem mntmReparados = new JMenuItem("Reparados");
+		mntmReparados.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				ListaTemporal = ControlReparaciones.listaReparados(matricula);
+				indice=0;
+				Comprobador();
+			}
+		});
 		mnLeer.add(mntmReparados);
 		
 		JMenuItem mntmPagados = new JMenuItem("Pagados");
+		mntmPagados.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				ListaTemporal = ControlReparaciones.listaPagados(matricula);
+				indice=0;
+				Comprobador();
+			}
+		});
 		mnLeer.add(mntmPagados);
 		
 		JMenuItem mntmPendienteDePago = new JMenuItem("Pendiente de Pago");
+		mntmPendienteDePago.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				ListaTemporal = ControlReparaciones.listaPendientesPago(matricula);
+				indice=0;
+				Comprobador();
+			}
+		});
 		mnLeer.add(mntmPendienteDePago);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBounds(439, 33, 264, 199);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JButton btnIzq = new JButton("<");
+		btnIzq.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(indice+1 > 0){
+					indice--;
+					RellenarFormulario();
+					}else
+						JOptionPane.showMessageDialog(null, "Te sales del rango...", "ERROR", JOptionPane.ERROR_MESSAGE);
+					
+					
+			}
+		});
 		btnIzq.setBounds(10, 6, 87, 48);
 		panel.add(btnIzq);
 		
-		JLabel lblDe = new JLabel("0 de 0");
+		lblDe = new JLabel("0 de 0");
 		lblDe.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDe.setBounds(107, 20, 54, 17);
 		panel.add(lblDe);
 		lblDe.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				
+				
+				if(ControlReparaciones.Borrar(ListaTemporal.get(indice))){
+					ListaTemporal.remove(indice);
+					JOptionPane.showMessageDialog(null, "Incidencia eliminada con exito", "ELIMINACION CORRECTA", JOptionPane.INFORMATION_MESSAGE);
+				}else{
+					JOptionPane.showMessageDialog(null, "No se encontro la incidencia a eliminar", "ERROR AL ELIMINAR", JOptionPane.ERROR_MESSAGE);
+				}
+
+				indice = 0;
+				Comprobador();
+			}
+		});
 		btnEliminar.setBounds(10, 60, 244, 128);
 		panel.add(btnEliminar);
 		btnEliminar.setForeground(Color.WHITE);
@@ -331,16 +416,112 @@ public class FichaReparacion extends JFrame {
 		});
 		
 		JButton btnDerecha = new JButton(">");
+		btnDerecha.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				if(indice+1 < ListaTemporal.size()){
+				indice++;
+				RellenarFormulario();
+				}else
+					JOptionPane.showMessageDialog(null, "Te sales del rango...", "ERROR", JOptionPane.ERROR_MESSAGE);
+				
+				
+				
+				
+				
+			}
+		});
 		btnDerecha.setBounds(171, 6, 83, 48);
 		panel.add(btnDerecha);
 		
-	if(ControlReparaciones.listaAverias(matricula).isEmpty()){
-		panel.setVisible(false);
+		Comprobador();
+	
+	
+	
+	
+	}
+	
+	/**
+	 * Modo Lectura
+	 */
+	
+	private void ModoLectura(){
 		
+		RellenarFormulario();
+		
+		
+		for(Component i : getContentPane().getComponents()){
+			
+			i.setEnabled(false);
+			
+		}
+		btnVolver.setEnabled(true);
+		btnSalir.setEnabled(true);
+		panel.setVisible(true);
+		
+		
+	}
+	
+	
+	/**
+	 * Modo Escritura
+	 */
+	
+	private void ModoEscritura(){
+		for(Component i : getContentPane().getComponents()){
+			
+			
+			
+			i.setEnabled(true);
+			
+			
+		}
+		txtFldDni.setEnabled(false);
+		txtFldMatricula.setEnabled(false);
+		panel.setVisible(false);
+		txtTipoVehiculo.setEnabled(false);
+		
+		txtFechaEntrega.setText(null);
+		txtFechaIngreso.setText(null);
+		txtFldIdReparacion.setText(null);
+		
+		
+		pagoList.setSelectedIndex(0);
+		txtAreaDescripcion.setText(null);
+		estadoList.setSelectedIndex(0);
+		
+	}
+	
+	
+	
+	
+	/**
+	 * Comprobador
+	 */
+	
+	private void Comprobador(){
+	
+	if(ListaTemporal.isEmpty()){
+		
+		ModoEscritura();
 	
 	}else{
 		
-		Reparacion aux = ControlReparaciones.listaAverias(matricula).get(0);
+		ModoLectura();
+		
+		
+		
+		
+		
+	}
+	}
+	/**
+	 * Rellenar Formulario
+	 */
+	
+	private void RellenarFormulario(){
+		Reparacion aux = ListaTemporal.get(indice);
 		Vehiculo aux2 = ControlVehiculos.Obtener(matricula);
 		
 		txtFechaEntrega.setText(aux.getFechaFin());
@@ -351,16 +532,22 @@ public class FichaReparacion extends JFrame {
 		txtTipoVehiculo.setText(aux2.getTipo());
 		pagoList.setSelectedValue(aux.getEstadoPago(),true);
 		txtAreaDescripcion.setText(aux.getComentario());
+		estadoList.setSelectedValue(aux.getEstadoAveria(), true);
+		
+		
+		lblDe.setText(indice+1 + " de " + ListaTemporal.size());
 		
 		
 		
 	}
 	
 	
-	}
 	/**
 	 * Validaciones de fechas
 	 */
+	
+	
+	
 	
 	public boolean isValidDate(String inDate) {
 

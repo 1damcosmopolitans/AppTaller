@@ -16,14 +16,14 @@ import java.util.regex.Pattern;
 		
 		
 		public Reparacion(String idRep, String matriculaRep, String fechaIni, String fechaFin, 
-				String averia, String estadoAveria, String comentario) {
+				String estadoPago, String estadoAveria, String comentario) {
 			super();
 			setIdRep(idRep);
 			setMatriculaRep(matriculaRep);
 			setAveria(estadoAveria);
 			setComentario(comentario);
 			setEstadoAveria(estadoAveria);
-			setEstadoPago(estadoAveria);
+			setEstadoPago(estadoPago);
 			setFechaFin(fechaFin);
 			setFechaIni(fechaIni);
 		}
