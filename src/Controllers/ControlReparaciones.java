@@ -43,7 +43,7 @@ public class ControlReparaciones {
 		return aux;
 	}
 	
-	public ArrayList<Reparacion> listaPagados(String matricula){
+	public static ArrayList<Reparacion> listaPagados(String matricula){
 		ArrayList<Reparacion> aux = new ArrayList<Reparacion>();
 		for(Reparacion i: listaTotal(matricula)){
 			if(i.getEstadoPago().equals("Pagado")){
@@ -54,7 +54,7 @@ public class ControlReparaciones {
 		return aux;
 	}
 	
-	public ArrayList<Reparacion> listaPendientesPago(String matricula){
+	public static ArrayList<Reparacion> listaPendientesPago(String matricula){
 		ArrayList<Reparacion> aux = new ArrayList<Reparacion>();
 		for(Reparacion i: listaTotal(matricula)){
 			if(i.getEstadoPago().equals("Pendiente")){

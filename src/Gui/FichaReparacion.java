@@ -267,7 +267,7 @@ public class FichaReparacion extends JFrame {
 					}
 				}
 		});
-		btnGuardar.setBounds(282, 519, 149, 47);
+		btnGuardar.setBounds(282, 519, 158, 47);
 		getContentPane().add(btnGuardar);
 		
 		btnSalir = new JButton("SALIR");
