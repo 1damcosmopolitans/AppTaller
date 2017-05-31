@@ -96,6 +96,7 @@ public class FichaObra extends JFrame{
 		textID.setColumns(10);
 		
 		textTiempo = new JTextField();
+		textTiempo.setText("0");
 		textTiempo.setEnabled(false);
 		textTiempo.setColumns(10);
 		textTiempo.setBounds(195, 178, 218, 25);
@@ -107,6 +108,7 @@ public class FichaObra extends JFrame{
 		getContentPane().add(textPiezas);
 		
 		textPrecio = new JTextField();
+		textPrecio.setText("0");
 		textPrecio.setEnabled(false);
 		textPrecio.setColumns(10);
 		textPrecio.setBounds(125, 345, 218, 25);
@@ -170,8 +172,6 @@ public class FichaObra extends JFrame{
 		getContentPane().add(btnFinRep);
 		
 		textID.setText(reparacion.getIdRep());
-		textTiempo.setText("" + reparacion.getTiempo());
-		textPrecio.setText("" + reparacion.getPrecio());
 		
 		lblSegundos = new JLabel("0");
 		lblSegundos.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -186,6 +186,7 @@ public class FichaObra extends JFrame{
 		
 		panelGuardar = new JPanel();
 		panelGuardar.setBounds(507, 237, 203, 229);
+		panelGuardar.setBackground(new Color(102, 153, 204));
 		getContentPane().add(panelGuardar);
 		panelGuardar.setLayout(null);
 		
