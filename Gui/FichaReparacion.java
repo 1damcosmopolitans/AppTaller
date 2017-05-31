@@ -85,7 +85,12 @@ public class FichaReparacion extends JFrame {
 	private ArrayList<Reparacion> ListaTemporal;
 	private int indice;
 	JButton btnReparar;
-	private JLabel lblEur;
+	private JLabel label;
+	private JLabel lblPrecio;
+	private JLabel label_2;
+	private JLabel label_3;
+	private JLabel label_4;
+	private JLabel lblTiempo;
 
 	
 
@@ -301,7 +306,7 @@ public class FichaReparacion extends JFrame {
 		getContentPane().add(btnSalir);
 		
 		menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 713, 27);
+		menuBar.setBounds(0, 0, 790, 27);
 		getContentPane().add(menuBar);
 		
 		JMenu mnAadir = new JMenu("Nuevo");
@@ -381,7 +386,8 @@ public class FichaReparacion extends JFrame {
 		mnLeer.add(mntmPendienteDePago);
 		
 		panel = new JPanel();
-		panel.setBounds(439, 33, 264, 258);
+		panel.setBounds(516, 33, 264, 373);
+		panel.setBackground(new Color(102, 153, 204));
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -427,8 +433,8 @@ public class FichaReparacion extends JFrame {
 		});
 		btnEliminar.setBounds(10, 60, 244, 128);
 		panel.add(btnEliminar);
-		btnEliminar.setForeground(Color.WHITE);
-		btnEliminar.setBackground(Color.BLUE);
+		btnEliminar.setForeground(Color.BLACK);
+		btnEliminar.setBackground(Color.RED);
 		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -466,21 +472,37 @@ public class FichaReparacion extends JFrame {
 		});
 		btnReparar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
-		JLabel lblTotCalculado = new JLabel("TOTAL CUENTA");
-		lblTotCalculado.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTotCalculado.setBounds(554, 302, 149, 24);
-		getContentPane().add(lblTotCalculado);
+		label = new JLabel("\u20AC");
+		label.setFont(new Font("Tahoma", Font.BOLD, 14));
+		label.setBounds(158, 286, 46, 14);
+		panel.add(label);
 		
-		lblEur = new JLabel("\u20AC");
-		lblEur.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblEur.setBounds(692, 364, 46, 14);
-		getContentPane().add(lblEur);
-		
-		JLabel lblPrecio = new JLabel("0");
+		lblPrecio = new JLabel("0");
 		lblPrecio.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPrecio.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPrecio.setBounds(594, 364, 46, 14);
-		getContentPane().add(lblPrecio);
+		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblPrecio.setBounds(91, 286, 46, 14);
+		panel.add(lblPrecio);
+		
+		label_2 = new JLabel("Precio");
+		label_2.setFont(new Font("Tahoma", Font.BOLD, 15));
+		label_2.setBounds(34, 288, 73, 14);
+		panel.add(label_2);
+		
+		label_3 = new JLabel("Tiempo");
+		label_3.setFont(new Font("Tahoma", Font.BOLD, 15));
+		label_3.setBounds(34, 323, 73, 14);
+		panel.add(label_3);
+		
+		label_4 = new JLabel("Minutos");
+		label_4.setFont(new Font("Tahoma", Font.BOLD, 14));
+		label_4.setBounds(158, 321, 79, 14);
+		panel.add(label_4);
+		
+		lblTiempo = new JLabel("0");
+		lblTiempo.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTiempo.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTiempo.setBounds(91, 323, 46, 14);
+		panel.add(lblTiempo);
 		//txtPrecioTotal.setText(String.valueOf(ControlReparaciones.ObtenerPrecio(matricula)));			//INSERTAMOS EL DATO
 		
 		
@@ -578,6 +600,10 @@ public class FichaReparacion extends JFrame {
 		pagoList.setSelectedValue(aux.getEstadoPago(),true);
 		txtAreaDescripcion.setText(aux.getComentario());
 		estadoList.setSelectedValue(aux.getEstadoAveria(), true);
+		
+		
+		lblPrecio.setText("" + aux.getPrecio());
+		lblTiempo.setText("" +  aux.getTiempo());
 		
 		
 		lblDe.setText(indice+1 + " de " + ListaTemporal.size());
