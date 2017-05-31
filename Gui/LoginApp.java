@@ -60,7 +60,7 @@ public class LoginApp extends JFrame {
 		setExtendedState(MAXIMIZED_BOTH);
 		
 		setMinimumSize(new Dimension(1000, 600));
-		getContentPane().setBackground(new Color(102, 153, 204));
+		getContentPane().setBackground(new Color(204, 255, 153));
 		getContentPane().setLayout(null);
 		
 		JLabel lblIcon = new JLabel();

@@ -96,7 +96,7 @@ public class FichaCliente extends JFrame {
 		setContentPane(contentPane);
 
 		panelPrincipal = new JPanel();
-		panelPrincipal.setBackground(new Color(102, 153, 204));
+		panelPrincipal.setBackground(new Color(204, 255, 153));
 		contentPane.add(panelPrincipal, BorderLayout.CENTER);
 		panelPrincipal.setLayout(null);
 
@@ -146,7 +146,7 @@ public class FichaCliente extends JFrame {
 		panelDni.setBounds(10, 65, 314, 56);
 		panelPrincipal.add(panelDni);
 		panelDni.setLayout(null);
-		panelDni.setBackground(new Color(102, 153, 204));
+		panelDni.setBackground(new Color(204, 255, 153));
 
 		lblDni = new JLabel("DNI");
 		lblDni.setBounds(20, 11, 69, 42);

@@ -99,7 +99,7 @@ public class FichaReparacion extends JFrame {
 	 */
 
 	public FichaReparacion(String matricula, String dniPropietario,String tipo) {
-		getContentPane().setBackground(new Color(102, 153, 204));			//UNA REPARACION SE IDENTIFICA POR LA MATRICULA Y EL DNI DEL PROPIETARIO DEL VEHICULO
+		getContentPane().setBackground(new Color(204, 255, 153));			//UNA REPARACION SE IDENTIFICA POR LA MATRICULA Y EL DNI DEL PROPIETARIO DEL VEHICULO
 		this.matricula = matricula;
 		this.dniPropietario = dniPropietario;
 		this.tipo = tipo;
@@ -387,7 +387,7 @@ public class FichaReparacion extends JFrame {
 		
 		panel = new JPanel();
 		panel.setBounds(516, 33, 264, 373);
-		panel.setBackground(new Color(102, 153, 204));
+		panel.setBackground(new Color(153, 204, 153));
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		

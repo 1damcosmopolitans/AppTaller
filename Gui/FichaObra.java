@@ -49,7 +49,7 @@ public class FichaObra extends JFrame{
 	 * Create the application.
 	 */
 	public FichaObra(Reparacion rep) {
-		getContentPane().setBackground(new Color(102, 153, 204));
+		getContentPane().setBackground(new Color(204, 255, 153));
 		reparacion = rep;
 		controlContador = true;
 		contador = null;
@@ -186,7 +186,7 @@ public class FichaObra extends JFrame{
 		
 		panelGuardar = new JPanel();
 		panelGuardar.setBounds(507, 237, 203, 229);
-		panelGuardar.setBackground(new Color(102, 153, 204));
+		panelGuardar.setBackground(new Color(153, 204, 153));
 		getContentPane().add(panelGuardar);
 		panelGuardar.setLayout(null);
 		

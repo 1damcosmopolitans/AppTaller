@@ -29,7 +29,7 @@ public class BuscaAlta extends JFrame{
 	 * Create the application.
 	 */
 	public BuscaAlta() {
-		getContentPane().setBackground(new Color(102, 153, 204));
+		getContentPane().setBackground(new Color(204, 255, 153));
 		setMinimumSize(new Dimension(1500, 900));
 		setExtendedState(Frame.MAXIMIZED_BOTH);
 		initialize();

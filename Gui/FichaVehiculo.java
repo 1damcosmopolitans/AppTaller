@@ -47,7 +47,7 @@ public class FichaVehiculo extends JFrame{
 	 * Create the application.
 	 */
 	public FichaVehiculo(String matricula, boolean modo) {
-		getContentPane().setBackground(new Color(102, 153, 204));
+		getContentPane().setBackground(new Color(204, 255, 153));
 		this.matricula = matricula;
 		this.modo = modo;
 		initialize();
@@ -111,7 +111,7 @@ public class FichaVehiculo extends JFrame{
 		getContentPane().add(listVehiculo);
 		
 		btnVerCliente = new JButton("Ver cliente");
-		btnVerCliente.setBackground(new Color(173, 255, 47));
+		btnVerCliente.setBackground(new Color(51, 153, 204));
 		btnVerCliente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -217,7 +217,7 @@ public class FichaVehiculo extends JFrame{
 		btnReparacion.setVisible(!modo);*/
 		
 		btnEditar = new JToggleButton("Editar");
-		btnEditar.setBackground(SystemColor.info);
+		btnEditar.setBackground(new Color(153, 153, 102));
 
 
 		btnEditar.setFont(new Font("Tahoma", Font.BOLD, 11));
