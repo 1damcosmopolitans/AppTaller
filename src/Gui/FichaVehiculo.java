@@ -108,7 +108,7 @@ public class FichaVehiculo extends JFrame{
 			}
 		});
 		btnVerCliente.setFont(new Font("SimSun", Font.BOLD, 11));
-		btnVerCliente.setBounds(283, 70, 116, 81);
+		btnVerCliente.setBounds(392, 21, 127, 99);
 		getContentPane().add(btnVerCliente);
 		
 		btnReparacion = new JButton("Reparacion");
@@ -121,7 +121,7 @@ public class FichaVehiculo extends JFrame{
 		
 		
 		btnReparacion.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnReparacion.setBounds(283, 181, 116, 81);
+		btnReparacion.setBounds(392, 177, 127, 94);
 		getContentPane().add(btnReparacion);
 		
 		JLabel lblColor = new JLabel("Color:");
@@ -130,7 +130,7 @@ public class FichaVehiculo extends JFrame{
 		
 		txtColor = new JTextField();
 		txtColor.setColumns(10);
-		txtColor.setBounds(10, 296, 193, 20);
+		txtColor.setBounds(10, 304, 193, 31);
 		getContentPane().add(txtColor);
 		
 		JLabel lblMatricula = new JLabel("Matricula:");
@@ -147,7 +147,7 @@ public class FichaVehiculo extends JFrame{
 		
 
 		btnCrear.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnCrear.setBounds(10, 351, 89, 23);
+		btnCrear.setBounds(42, 346, 109, 66);
 		getContentPane().add(btnCrear);
 		
 		JLabel lblDni = new JLabel("Dni propietario:");
@@ -162,7 +162,7 @@ public class FichaVehiculo extends JFrame{
 		btnGuardar = new JButton("Guardar");
 
 		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnGuardar.setBounds(10, 351, 89, 23);
+		btnGuardar.setBounds(217, 346, 127, 66);
 		getContentPane().add(btnGuardar);
 		
 		//ESTABLECER EL MODO LECTURA O ESCRITURA
@@ -178,7 +178,7 @@ public class FichaVehiculo extends JFrame{
 		btnEditar = new JToggleButton("Editar");
 
 		btnEditar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnEditar.setBounds(283, 336, 116, 38);
+		btnEditar.setBounds(392, 344, 127, 66);
 		getContentPane().add(btnEditar);
 	
 		//SI EL MODO ES LECTURA CARGAMOS EL FORMULARIO CON LA INFORMACIÓN CORRESPONDIENTE

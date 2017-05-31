@@ -11,14 +11,14 @@ import java.util.regex.Pattern;
 		private String estadoAveria;
 		private String estadoPago;
 		private String comentario;
-		private int tiempoMin;
+		private int tiempoRep;
 		private float precioTotal;
 		private final String FormatoFecha = "([12][0-9]|3[01]|0?[1-9])/(0?[1-9]|1[012])/((?:19|20)\\d\\d)";
 		
 		
 		
 		public Reparacion(String idRep, String matriculaRep, String fechaIni, String fechaFin, 
-				String estadoPago, String estadoAveria, String comentario) {
+				String estadoPago, String estadoAveria, String comentario, int tiempoRep, float precioTotal) {
 			super();
 			setIdRep(idRep);
 			setMatriculaRep(matriculaRep);
@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 			setEstadoPago(estadoPago);
 			setFechaFin(fechaFin);
 			setFechaIni(fechaIni);
-			tiempoMin = 0;
+			tiempoRep = 0;
 			precioTotal = 0;
 		}
 		
@@ -102,18 +102,24 @@ import java.util.regex.Pattern;
 
 	
 		public int getTiempo(){
-			return tiempoMin;
+			return tiempoRep;
 		}
 		
 		public float getPrecio(){
 			return precioTotal;
 		}
 		
+		public void setPrecio(float precioTotal){
+			this.precioTotal = precioTotal;
+		}
+		
 		public void incTiempo(int tiempomin){
-			tiempoMin += tiempomin;
+			tiempoRep += tiempomin;
 		}
 		
 		public void incPrecio(float precio){
 			precioTotal += precio;
 		}
+		
+	
 	}

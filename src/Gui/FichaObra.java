@@ -38,8 +38,12 @@ public class FichaObra extends JFrame{
 	private JLabel lblSegs;
 	private JPanel panelGuardar;
 	private Thread contador;
+	private float totalCalculado;			//La variable que nos permitira gurdar el total (OPCIONAL)
 
 	private final float precioMin = 1.50f;
+	private JLabel lblEuro;
+	private JLabel lblMinutos;
+	private JLabel lblEuro2;
 	/**
 	 * Create the application.
 	 */
@@ -193,6 +197,9 @@ public class FichaObra extends JFrame{
 				float precioPiezas = Float.parseFloat(textPiezas.getText());
 				int tiempoMin = Integer.parseInt(textTiempo.getText());
 				textPrecio.setText("" + (precioPiezas + (float)(tiempoMin*precioMin)));
+				/*totalCalculado=precioPiezas + (float)(tiempoMin*precioMin);
+				textPrecio.setText("" +totalCalculado);*/
+				
 				JOptionPane.showMessageDialog(null, "Precio calculado con éxito", "CALCULAR PRECIO", JOptionPane.INFORMATION_MESSAGE);
 				}catch(Exception e){
 					JOptionPane.showMessageDialog(null, "Error algún campo es incorrecto", "ERROR CALCULAR PRECIO", JOptionPane.ERROR_MESSAGE);
@@ -225,12 +232,30 @@ public class FichaObra extends JFrame{
 				reparacion.setEstadoAveria((String)listAveria.getSelectedValue());
 				reparacion.incPrecio(Float.parseFloat(textPrecio.getText()));
 				reparacion.incTiempo(Integer.parseInt(textTiempo.getText()));
+				
 				JOptionPane.showMessageDialog(null, "Cambios guardados con éxito", "Obra", JOptionPane.INFORMATION_MESSAGE);
 				dispose();
 			}
 		});
 		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		
+		lblEuro = new JLabel("€");
+		lblEuro.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblEuro.setBounds(435, 254, 46, 14);
+		getContentPane().add(lblEuro);
+		
+		lblMinutos = new JLabel("minutos");
+		lblMinutos.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblMinutos.setBounds(423, 183, 74, 14);
+		getContentPane().add(lblMinutos);
+		
+		lblEuro2 = new JLabel("\u20AC");
+		lblEuro2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblEuro2.setBounds(365, 350, 46, 14);
+		getContentPane().add(lblEuro2);
 		listAveria.setSelectedValue(reparacion.getEstadoAveria(), true);
 		
 	}
+	//textPrecio.setText("" + (precioPiezas + (float)(tiempoMin*precioMin)));
+	//(String)listVehiculo.getSelectedValue()
 }

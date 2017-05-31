@@ -85,6 +85,8 @@ public class FichaReparacion extends JFrame {
 	private ArrayList<Reparacion> ListaTemporal;
 	private int indice;
 	JButton btnReparar;
+	private JTextField txtPrecioTotal;
+	private JLabel lblEur;
 
 	
 
@@ -175,6 +177,14 @@ public class FichaReparacion extends JFrame {
 				if (txtFechaEntrega.getText().matches("\\d{4}-\\d{2}-\\d{2}")) {
 				    JOptionPane.showMessageDialog(null,"Debes ingresar un formato de fecha correcto (like 2010-19-19) ");
 				}
+				
+				/*LOGICA DETRAS DE LA REPARACION PAGADA
+				if(txtFechaEntrega.getText() !="" || txtFechaEntrega.getText() !=null){
+					txtPrecioTotal.setText(String.valueOf(ControlReparaciones.ObtenerPrecio(matricula)));
+					txtPrecioTotal.setEnabled(false);
+					btnReparar.setEnabled(false);
+					
+				}*/
 			}
 		});
 		
@@ -208,7 +218,7 @@ public class FichaReparacion extends JFrame {
 		getContentPane().add(lblPagado);
 		
 		pagoList = new JList();
-		pagoList.setBounds(208, 400, 62, 32);
+		pagoList.setBounds(208, 400, 62, 39);
 		getContentPane().add(pagoList);
 		pagoList.setModel(new AbstractListModel() {
 			String[] values = new String[] {"Pendiente", "Pagado"};
@@ -227,7 +237,7 @@ public class FichaReparacion extends JFrame {
 		getContentPane().add(lblDescripcion);
 		
 		txtAreaDescripcion = new JTextArea();
-		txtAreaDescripcion.setBounds(324, 337, 260, 171);
+		txtAreaDescripcion.setBounds(324, 337, 189, 171);
 		getContentPane().add(txtAreaDescripcion);
 		
 		lblFechaIngreso = new JLabel("FECHA INGRESO");
@@ -256,7 +266,7 @@ public class FichaReparacion extends JFrame {
 				FichaReparacion.this.setVisible(false);
 			}
 		});
-		btnVolver.setBounds(27, 519, 89, 47);
+		btnVolver.setBounds(27, 519, 141, 47);
 		getContentPane().add(btnVolver);
 		
 		btnGuardar = new JButton("GUARDAR");
@@ -268,12 +278,11 @@ public class FichaReparacion extends JFrame {
 			@Override //(String idRep, String matriculaRep, Calendar fechaIni, Calendar fechaFin, int idFactura, String averia, String estado)
 			public void mouseClicked(MouseEvent arg0) {
 					try{
-						ControlReparaciones.Aniadir(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(), txtFechaEntrega.getText(),(String)pagoList.getSelectedValue(),(String)estadoList.getSelectedValue(), txtAreaDescripcion.getText());
+						
+						/////////Ojo aki
+						ControlReparaciones.Aniadir(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(), txtFechaEntrega.getText(),(String)pagoList.getSelectedValue(),(String)estadoList.getSelectedValue(), txtAreaDescripcion.getText(),0,0);
 						JOptionPane.showMessageDialog(null, "Se añadio con exito la descripcion de la reparación para este vehículo", "GUARDAR REPARACION", JOptionPane.INFORMATION_MESSAGE);
-						//Editar
-						//ControlReparaciones.Editar(txtFldIdReparacion.getText(), txtFldMatricula.getText(), txtFechaIngreso.getText(),txtFechaEntrega.getText(), txtAreaDescripcion.getText(),(String)estadoList.getSelectedValue());
-						//JOptionPane.showMessageDialog(null, "Se modificó con exito la ficha de la reparación para este vehículo", "REPARACION EDITADA", JOptionPane.INFORMATION_MESSAGE);
-					//}
+					
 					}catch(Exception e){
 					JOptionPane.showMessageDialog(null, e.getMessage(),"ERROR AL AÑADIR LA REPARACIÓN", JOptionPane.ERROR_MESSAGE);
 					}
@@ -288,7 +297,7 @@ public class FichaReparacion extends JFrame {
 				dispose();
 			}
 		});
-		btnSalir.setBounds(597, 519, 89, 47);
+		btnSalir.setBounds(537, 519, 149, 47);
 		getContentPane().add(btnSalir);
 		
 		menuBar = new JMenuBar();
@@ -457,6 +466,24 @@ public class FichaReparacion extends JFrame {
 		});
 		btnReparar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
+		JLabel lblTotCalculado = new JLabel("TOTAL CUENTA");
+		lblTotCalculado.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblTotCalculado.setBounds(537, 301, 149, 24);
+		getContentPane().add(lblTotCalculado);
+		
+		txtPrecioTotal = new JTextField();
+		txtPrecioTotal.setColumns(10);
+		txtPrecioTotal.setBounds(523, 353, 141, 39);
+		getContentPane().add(txtPrecioTotal);
+		
+		lblEur = new JLabel("\u20AC");
+		lblEur.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblEur.setBounds(667, 364, 46, 14);
+		getContentPane().add(lblEur);
+		//txtPrecioTotal.setText(String.valueOf(ControlReparaciones.ObtenerPrecio(matricula)));			//INSERTAMOS EL DATO
+		
+		
+		
 		Comprobador();
 	
 	
@@ -481,10 +508,8 @@ public class FichaReparacion extends JFrame {
 		btnVolver.setEnabled(true);
 		btnSalir.setEnabled(true);
 		panel.setVisible(true);
-		
-		
+			
 	}
-	
 	
 	/**
 	 * Modo Escritura

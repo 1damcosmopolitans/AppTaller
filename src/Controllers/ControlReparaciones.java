@@ -77,11 +77,24 @@ public class ControlReparaciones {
 			return true;
 		}
 	}
+	
+	/**
+	 * Metodo que devuelve el precio total
+	 */
+	/*public static float ObtenerPrecio(String idRep){
+		Reparacion rep = Obtener(idRep);
+		
+		if(rep == null){
+			return 0;
+		}else{
+			return rep.getPrecio();
+		}
+	}*/
 
-	public static void Aniadir(String idRep, String matriculaRep, String fechaIni, String fechaFin,  String estadoPago, String estadoAveria, String comentario){
+	public static void Aniadir(String idRep, String matriculaRep, String fechaIni, String fechaFin,  String estadoPago, String estadoAveria, String comentario, int tpoRep, float precioTot){
 		if(Buscar(idRep)) throw new RuntimeException("No se puede añadir la reparación porque ya hay una con el mismo identificativo");
 		
-		listaReparaciones.add(new Reparacion(idRep, matriculaRep, fechaIni, fechaFin, estadoPago, estadoAveria, comentario));
+		listaReparaciones.add(new Reparacion(idRep, matriculaRep, fechaIni, fechaFin, estadoPago, estadoAveria, comentario, tpoRep, precioTot));
 	}	
 	public static Reparacion Obtener(String idRep){
 		Reparacion rep = null;
@@ -100,10 +113,10 @@ public class ControlReparaciones {
 	//EN EL CASO DE QUE UN USUARIO INTENTE MODIFICAR UNA ID DE UNA REPARACIÓN POR OTRA NUEVA YA EXISTENTE DENTRO DE LA LISTA
 	//SE BORRARÍA LA ANTERIOR Y SE SUSTITUIRÍA POR LS NUEVA
 	
-	public static void Editar(String idRep, String matriculaRep, String fechaIni, String fechaFin, String averia, String estadoAveria, String Comentario){
+	public static void Editar(String idRep, String matriculaRep, String fechaIni, String fechaFin, String averia, String estadoAveria, String Comentario, int tpoRep, float precioTot){
 		
 		if(!Buscar(idRep)) throw new RuntimeException("No se encontro la reparación a editar");
-		Aniadir(idRep, matriculaRep, fechaIni, fechaFin, averia, estadoAveria, Comentario);
+		Aniadir(idRep, matriculaRep, fechaIni, fechaFin, averia, estadoAveria, Comentario, tpoRep, precioTot);
 		listaReparaciones.remove(Obtener(idRep));
 	}
 	

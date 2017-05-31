@@ -18,6 +18,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JTextArea;
 import java.awt.SystemColor;
+import javax.swing.JPanel;
 
 public class LoginApp extends JFrame {
 
@@ -31,10 +32,13 @@ public class LoginApp extends JFrame {
 	private JTextArea textUsuario;
 	private JLabel lberror1, lberror2;
 	private JButton btnSalir;
+	private JLabel lblFondo;
 
 	/**
 	 * Create the application.
 	 */
+	
+	
 	public LoginApp() {
 		initialize();
 	}
@@ -52,49 +56,57 @@ public class LoginApp extends JFrame {
 		
 		setMinimumSize(new Dimension(1000, 600));
 		getContentPane().setBackground(new Color(102, 153, 204));
-				getContentPane().setLayout(null);
+		getContentPane().setLayout(null);
 		
-				JLabel lblUsuario = new JLabel("Usuario:");
-				lblUsuario.setBounds(94, 155, 224, 152);
-				lblUsuario.setFont(new Font("Sylfaen", Font.PLAIN, 50));
-				getContentPane().add(lblUsuario);
+		JLabel lblIcon = new JLabel();
+		lblIcon.setBounds(635, 11, 261, 172);
+		lblIcon.setIcon(new ImageIcon(LoginApp.class.getResource("/Imagenes/User-icon.png")));
+		getContentPane().add(lblIcon);
+		
+		JLabel lblUsuario = new JLabel("User :");
+		lblUsuario.setBounds(176, 186, 224, 152);
+		lblUsuario.setForeground(Color.WHITE);
+		lblUsuario.setFont(new Font("Sylfaen", Font.PLAIN, 50));
+		getContentPane().add(lblUsuario);
 
-		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setBounds(94, 359, 224, 158);
+		JLabel lblPassword = new JLabel("Password :");
+		lblPassword.setBounds(176, 391, 224, 158);
+		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setFont(new Font("Sylfaen", Font.PLAIN, 50));
 		getContentPane().add(lblPassword);
 
 		textUsuario = new JTextArea();
-		textUsuario.setBounds(343, 175, 428, 109);
+		textUsuario.setBounds(448, 226, 428, 67);
 		textUsuario.setFont(new Font("Berlin Sans FB", Font.PLAIN, 45));
 		getContentPane().add(textUsuario);
 
 		passwordField = new JPasswordField();
-		passwordField.setBounds(343, 376, 428, 109);
+		passwordField.setBounds(448, 429, 428, 67);
 		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 50));
 		getContentPane().add(passwordField);
 
 		lberror1 = new JLabel("");
-		lberror1.setBounds(373, 295, 419, 50);
+		lberror1.setBounds(448, 334, 419, 50);
 		lberror1.setForeground(new Color(204, 0, 0));
 		lberror1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		getContentPane().add(lberror1);
 
 		lberror2 = new JLabel("");
-		lberror2.setBounds(373, 496, 428, 50);
+		lberror2.setBounds(448, 525, 428, 50);
 		lberror2.setForeground(new Color(204, 0, 0));
 		lberror2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		getContentPane().add(lberror2);
 
 		JButton BotonListo_1 = new JButton("ENTRAR");
+		BotonListo_1.setBounds(985, 198, 200, 113);
 		ImageIcon icono=new ImageIcon("Imagenes/Entrar.png");
-		BotonListo_1.setBounds(901, 155, 200, 132);
 		BotonListo_1.setBackground(new Color(124, 252, 0));
 		BotonListo_1.setForeground(Color.BLACK);
 		BotonListo_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		getContentPane().add(BotonListo_1);
 		
 		btnSalir = new JButton("SALIR");
+		btnSalir.setBounds(985, 387, 200, 126);
 		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		btnSalir.addMouseListener(new MouseAdapter() {
 			@Override
@@ -104,8 +116,12 @@ public class LoginApp extends JFrame {
 		});
 		btnSalir.setForeground(Color.WHITE);
 		btnSalir.setBackground(new Color(255, 102, 102));
-		btnSalir.setBounds(901, 376, 200, 131);
 		getContentPane().add(btnSalir);
+		
+		lblFondo = new JLabel();
+		lblFondo.setBounds(0, 0, 1596, 837);
+		lblFondo.setIcon(new ImageIcon(LoginApp.class.getResource("/Imagenes/Login1.jpg")));
+		getContentPane().add(lblFondo);
 		
 		
 
@@ -138,6 +154,9 @@ public class LoginApp extends JFrame {
 			}
 		});
 
+	}
+	public JLabel getLberror2() {
+		return lberror2;
 	}
 }
 

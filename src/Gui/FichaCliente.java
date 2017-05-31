@@ -139,6 +139,8 @@ public class FichaCliente extends JFrame {
 		panelPrincipal.add(lblComentarios);
 
 		panelDni = new JPanel();
+		
+		
 		panelDni.setBounds(10, 65, 314, 56);
 		panelPrincipal.add(panelDni);
 		panelDni.setLayout(null);
@@ -149,6 +151,7 @@ public class FichaCliente extends JFrame {
 		panelDni.add(lblDni);
 
 		txtFldDni = new JTextField();
+		txtFldDni.setEnabled(false);
 		txtFldDni.setBounds(121, 11, 184, 33);
 		panelDni.add(txtFldDni);
 		txtFldDni.setColumns(10);

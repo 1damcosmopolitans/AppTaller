@@ -60,7 +60,7 @@ public class BuscaAlta extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnBuscar.setBounds(112, 30, 395, 218);
+		btnBuscar.setBounds(371, 43, 395, 218);
 		getContentPane().add(btnBuscar);
 		
 		JButton btnNuevaAlta = new JButton("Nueva Alta");
@@ -71,18 +71,18 @@ public class BuscaAlta extends JFrame{
 			}
 		});
 		btnNuevaAlta.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btnNuevaAlta.setBounds(835, 30, 395, 218);
+		btnNuevaAlta.setBounds(906, 43, 395, 218);
 		getContentPane().add(btnNuevaAlta);
 		
 		JLabel lblInsertarMatrcula = new JLabel("INSERTAR MATR\u00CDCULA");
 		lblInsertarMatrcula.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		lblInsertarMatrcula.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInsertarMatrcula.setBounds(517, 244, 312, 130);
+		lblInsertarMatrcula.setBounds(686, 239, 312, 130);
 		getContentPane().add(lblInsertarMatrcula);
 		
 		textFieldMatricula = new JTextField();
 		textFieldMatricula.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		textFieldMatricula.setBounds(216, 351, 922, 95);
+		textFieldMatricula.setBounds(378, 350, 922, 95);
 		getContentPane().add(textFieldMatricula);
 		textFieldMatricula.setColumns(10);
 		
@@ -99,7 +99,11 @@ public class BuscaAlta extends JFrame{
 		btnLogout.setBackground(new Color(255, 102, 102));
 		btnLogout.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnLogout.setForeground(new Color(255, 255, 255));
-		btnLogout.setBounds(519, 499, 320, 95);
+		btnLogout.setBounds(686, 487, 320, 95);
 		getContentPane().add(btnLogout);
+		
+		JLabel label = new JLabel();
+		label.setBounds(10, 0, 1596, 837);
+		getContentPane().add(label);
 	}
 }
