@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
 import java.awt.Font;
@@ -17,8 +18,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JTextArea;
+
 import java.awt.SystemColor;
+
 import javax.swing.JPanel;
+
+import DAO.connectURL;
 
 public class LoginApp extends JFrame {
 
@@ -128,29 +133,36 @@ public class LoginApp extends JFrame {
 		BotonListo_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (textUsuario.getText().trim().equals(USER)) {
-					UsuarioC = true;
-
-					lberror1.setText("");
-				} else {
-					lberror1.setText("Error Usuario Incorrecto!");
+				if(connectURL.login(textUsuario.getText().trim(), passwordField.getText())){
+					setVisible(false);
+					new BuscaAlta().setVisible(true);
+				}else{
+					JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta", "ERROR INICIO SESION", JOptionPane.ERROR_MESSAGE);
 				}
-
-				if (passwordField.getText().equals(PASS)) {
-					PasswordC = true;
-
-					lberror2.setText("");
-				} else {
-					lberror2.setText("Error Password Incorrecta!");
-				}
-
-				if (UsuarioC && PasswordC) {
-					
-                    setVisible(false);
-					BuscaAlta p = new BuscaAlta();
-					p.setVisible(true);
-
-				}
+				
+//				if (textUsuario.getText().trim().equals(USER)) {
+//					UsuarioC = true;
+//
+//					lberror1.setText("");
+//				} else {
+//					lberror1.setText("Error Usuario Incorrecto!");
+//				}
+//
+//				if (passwordField.getText().equals(PASS)) {
+//					PasswordC = true;
+//
+//					lberror2.setText("");
+//				} else {
+//					lberror2.setText("Error Password Incorrecta!");
+//				}
+//
+//				if (UsuarioC && PasswordC) {
+//					
+//                    setVisible(false);
+//					BuscaAlta p = new BuscaAlta();
+//					p.setVisible(true);
+//
+//				}
 			}
 		});
 

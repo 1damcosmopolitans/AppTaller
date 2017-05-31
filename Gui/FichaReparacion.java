@@ -85,7 +85,6 @@ public class FichaReparacion extends JFrame {
 	private ArrayList<Reparacion> ListaTemporal;
 	private int indice;
 	JButton btnReparar;
-	private JTextField txtPrecioTotal;
 	private JLabel lblEur;
 
 	
@@ -469,18 +468,19 @@ public class FichaReparacion extends JFrame {
 		
 		JLabel lblTotCalculado = new JLabel("TOTAL CUENTA");
 		lblTotCalculado.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTotCalculado.setBounds(537, 301, 149, 24);
+		lblTotCalculado.setBounds(554, 302, 149, 24);
 		getContentPane().add(lblTotCalculado);
-		
-		txtPrecioTotal = new JTextField();
-		txtPrecioTotal.setColumns(10);
-		txtPrecioTotal.setBounds(523, 353, 141, 39);
-		getContentPane().add(txtPrecioTotal);
 		
 		lblEur = new JLabel("\u20AC");
 		lblEur.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblEur.setBounds(667, 364, 46, 14);
+		lblEur.setBounds(692, 364, 46, 14);
 		getContentPane().add(lblEur);
+		
+		JLabel lblPrecio = new JLabel("0");
+		lblPrecio.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblPrecio.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblPrecio.setBounds(594, 364, 46, 14);
+		getContentPane().add(lblPrecio);
 		//txtPrecioTotal.setText(String.valueOf(ControlReparaciones.ObtenerPrecio(matricula)));			//INSERTAMOS EL DATO
 		
 		

@@ -4,10 +4,10 @@ import java.sql.*;
 
 public class connectURL {
 
-	public static boolean login(String usuario, int pass) {
+	public static boolean login(String usuario, String pass) {
 
 		// Create a variable for the connection string.
-		String connectionUrl = "jdbc:sqlserver://DESKTOP-NSNEPC8\\SQLJUAN:1433;"
+		String connectionUrl = "jdbc:sqlserver://DESKTOP-NSNEPC8\\SQLJUAN;"
 				+ "databaseName=Taller;user=cosmopolitans ;password=fresas";
 
 		// Declare the JDBC objects.
