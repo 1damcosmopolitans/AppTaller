@@ -31,6 +31,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JToggleButton;
 import javax.swing.JTextArea;
+import java.awt.Color;
 
 public class FichaCliente extends JFrame {
 
@@ -87,7 +88,7 @@ public class FichaCliente extends JFrame {
 		 * PONEMOS EL DNI SACADO DE LA FICHA DELVEHICULO Y DESABILITAMOS EL
 		 * PANEL SEGUNDARIO panelDni.setEnabled(false);
 		 */
-		setBounds(100, 100, 716, 598);
+		setBounds(100, 100, 757, 664);
 		// setExtendedState(MAXIMIZED_BOTH);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -95,6 +96,7 @@ public class FichaCliente extends JFrame {
 		setContentPane(contentPane);
 
 		panelPrincipal = new JPanel();
+		panelPrincipal.setBackground(new Color(102, 153, 204));
 		contentPane.add(panelPrincipal, BorderLayout.CENTER);
 		panelPrincipal.setLayout(null);
 

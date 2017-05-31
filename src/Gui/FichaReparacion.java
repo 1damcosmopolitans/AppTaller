@@ -94,7 +94,8 @@ public class FichaReparacion extends JFrame {
 	 * CONSTRUCTOR
 	 */
 
-	public FichaReparacion(String matricula, String dniPropietario,String tipo) {			//UNA REPARACION SE IDENTIFICA POR LA MATRICULA Y EL DNI DEL PROPIETARIO DEL VEHICULO
+	public FichaReparacion(String matricula, String dniPropietario,String tipo) {
+		getContentPane().setBackground(new Color(102, 153, 204));			//UNA REPARACION SE IDENTIFICA POR LA MATRICULA Y EL DNI DEL PROPIETARIO DEL VEHICULO
 		this.matricula = matricula;
 		this.dniPropietario = dniPropietario;
 		this.tipo = tipo;
@@ -106,7 +107,7 @@ public class FichaReparacion extends JFrame {
 	private void initialize() {
 		
 		getContentPane().setLayout(null);
-		setBounds(200, 100, 729, 616);
+		setBounds(200, 100, 806, 672);
 		
 		
 		lblDniPropietario = new JLabel("DNI PROPIETARIO");
